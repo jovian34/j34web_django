@@ -13,6 +13,7 @@ class Service(models.Model):
 class Content(models.Model):
     title = models.CharField(null=False, max_length=100,)
     sub_title = models.CharField(default=None, blank=True, max_length=100)
+    author = models.CharField(default='Carl James', max_length=100)
     location = models.CharField(default='BLOOMINGTON, IN', max_length=100)
     pub_date = models.DateTimeField('date published')
     featured_image = models.URLField(blank=True, null=True, max_length=200)
@@ -20,4 +21,3 @@ class Content(models.Model):
 
     def __str__(self):
         return self.title
-
