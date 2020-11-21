@@ -6,6 +6,9 @@ class Service(models.Model):
     flat_rate = models.BooleanField(default=False)
     price = models.FloatField(default=40.0, blank=True, null=True)
 
+    def __str__(self):
+        return self.service_name
+
 
 class Content(models.Model):
     title = models.CharField(null=False, max_length=100,)
@@ -14,3 +17,7 @@ class Content(models.Model):
     pub_date = models.DateTimeField('date published')
     featured_image = models.URLField(blank=True, null=True, max_length=200)
     content = models.TextField(null=False)
+
+    def __str__(self):
+        return self.title
+
