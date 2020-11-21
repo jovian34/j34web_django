@@ -26,6 +26,7 @@ else:
 # Application definition
 
 INSTALLED_APPS = [
+    'j34main.apps.J34MainConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
