@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}jovian34 LLC{% endblock %}
+
+{% block content %}
+
+    <div class="column-3"></div>
+
+
+    <div class="column-6">
+        <h1>jovian34 LLC Blogs List</h1>
+        {% for article in articles %}
+            <ul>
+                <li>
+                <h1><a href="{% url 'blog' article.pk %}">{{ article.title }}</a></h1>
+                <h2>{{ article.sub_title }}</h2>
+                <p>by {{ article.author }} | {{ article.location }} | {{ article.pub_date.date }}</p>
+                </li>
+            </ul>
+        {% endfor %}
+    </div>
+
+
+
+    <div class="column-3">
+   <figure class="col3full">
+    <img src="https://live.staticflickr.com/65535/49931263861_877b53bb07_w.jpg">
+       <figcaption>Carl James is CompTIA A+ ce Certified</figcaption>
+   </figure>
+   </div>
+
+{% endblock %}

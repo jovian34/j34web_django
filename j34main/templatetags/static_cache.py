@@ -6,9 +6,7 @@
  recompute_caches_every_request = False in production
  recompute_caches_every_request = True in development
  Use in your templates as:
- <link
-      href="/static/css/site.css?cacheId=${build_cache_id('/static/css/site.css')}"
-      rel="stylesheet">
+ href="{% static 'j34main/css/phone-default.css' %}?cacheId={{ 'static/j34main/css/phone-default.css' | create_cache_id }}">
 """
 
 import hashlib
@@ -19,7 +17,7 @@ __full_path = os.path.dirname(os.path.abspath(j34main.__file__))
 __hash_lookup = dict()
 
 # Set this to False in production, True in development
-recompute_caches_every_request = True
+recompute_caches_every_request = bool(int(os.environ.get('DEVELOP')))
 enable_tracing = False
 
 
@@ -32,7 +30,7 @@ def build_cache_id(relative_file_url: str):
     key = relative_file_url
 
     if use_hash and key in __hash_lookup:
-        __trace("Using cached lookup for {} -> {}".format(key, __hash_lookup[key]))
+        __trace(f"Using cached lookup for {key} -> {__hash_lookup[key]}")
         return __hash_lookup[key]
 
     fullname = os.path.abspath(os.path.join(
@@ -44,7 +42,7 @@ def build_cache_id(relative_file_url: str):
     digest_value = __get_file_hash(fullname)
     __hash_lookup[key] = digest_value
 
-    __trace("Computed digest for {} -> {}".format(key, __hash_lookup[key]))
+    __trace(f"Computed digest for {key} -> {__hash_lookup[key]}")
     return digest_value
 
 
