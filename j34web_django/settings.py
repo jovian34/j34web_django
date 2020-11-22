@@ -18,8 +18,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 DEBUG = bool(int(os.environ.get('DEVELOP')))
 
 if not bool(int(os.environ.get('DEVELOP'))):
-    ALLOWED_HOSTS = ['mmescreations.com', 'www.mmescreations.com',
-                     '167.71.188.32', ]
+    ALLOWED_HOSTS = ['jovian34.com', 'www.jovian34.com',
+                     '167.172.239.231', ]
 else:
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
