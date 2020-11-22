@@ -12,7 +12,7 @@
         <div class="column-6">
             <h1>{{ article.title }}</h1>
             <h2>{{ article.sub_title }}</h2>
-            <p>by {{ article.author }} | {{ article.location }} | {{ article.pub_date }}</p>
+            <p>by {{ article.author }} | {{ article.location }} | {{ article.pub_date.date }}</p>
             <figure class="col6">
                 <img src="{{ article.featured_image }}">
                 <figcaption>{{ article.image_caption }}</figcaption>
