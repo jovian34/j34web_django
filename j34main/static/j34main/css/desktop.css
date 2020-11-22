@@ -1,0 +1,31 @@
+@media only screen and (min-width: 1141px) {
+
+/*---------HEADER----------*/
+
+header, nav, .row, footer {
+	max-width: 1140px;
+	margin: 0 auto;
+}
+
+
+/*-------NAV---------*/
+
+
+nav ul li a {
+	transition: background .3s linear;
+}
+nav ul li a:hover {
+	background-color: #FFCC66;
+}
+
+/*------CONTENT---------*/
+
+
+
+/*-------COLUMNS----------*/
+.column-2 {
+	width: 16.6666%;
+}	
+	
+
+}  /*end of the media query*/

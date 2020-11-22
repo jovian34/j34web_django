@@ -1,5 +1,15 @@
-from django.http import HttpResponse
+from django.shortcuts import render
+
+from .models import Content
+
+
+def split_paras(articles):
+    pass
 
 
 def index(request):
-    return HttpResponse("Welcome to jovian34 LLC")
+    articles = Content.objects.all()
+    context = {
+        'articles': articles,
+    }
+    return render(request, 'j34main/index.html', context)

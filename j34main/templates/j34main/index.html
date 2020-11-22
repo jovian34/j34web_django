@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}jovian34 LLC{% endblock %}
+
+{% block content %}
+
+    <div class="column-12">
+        <h1>jovian34 LLC Blogs</h1>
+    </div>
+
+    {% for article in articles %}
+        <div class="column-6">
+            <h2><{{ article.title }}</h2>
+            <h3>{{ article.subtitle }}</h3>
+            <h4>by {{ article.author }} | {{ article.location }} | {{ article.pub_date }}</h4>
+            {% autoescape off %}
+            <p>{{ article.teaser }}</p>
+            {% endautoescape %}
+        </div>
+
+    {% endfor %}
+
+
+{% endblock %}

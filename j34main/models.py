@@ -17,6 +17,7 @@ class Content(models.Model):
     location = models.CharField(default='BLOOMINGTON, IN', max_length=100)
     pub_date = models.DateTimeField('date published')
     featured_image = models.URLField(blank=True, null=True, max_length=200)
+    teaser = models.TextField(null=False)
     content = models.TextField(null=False)
 
     def __str__(self):

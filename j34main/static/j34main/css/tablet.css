@@ -1,0 +1,93 @@
+@media only screen and (min-width: 641px) {
+
+/*NAVIGATION HERE*/
+#navWrapper {
+	background-color: rgba(255,255,255,0.8);
+	padding: 0;
+	}
+button#showPhoneNav {
+	display: none;
+}
+	nav ul {
+		display: block!important;
+		/*remove phone effects*/
+		padding: 0;
+		margin: 0 0 0 2%;
+		border: none;
+		border-radius: 0;
+		background-color: transparent;
+		border-left: 1px solid black;
+	}
+	nav ul li {
+		float: left;
+	}
+	nav ul li a {
+		border: none;
+		padding: 1em 1.5em;
+		font-weight: 700;
+		font-size: .9em;
+		border-right: 1px solid black;
+	}
+	
+	nav ul li.active a {
+		color: #336600;
+			background-color: #FFCC66;
+	}
+
+	/* mouse over link */
+a:hover {
+    color: #669900;
+}
+	
+/*--------CONTENT---------*/
+
+#contentWrapper {
+	display: table;
+	width: 100%;
+}
+	
+figure.col6full{
+	width: 48%;
+	margin-left: 2%;
+	float: right;
+}
+
+figure.col6{
+	width: 48%;
+}
+
+/*-------COLUMNS----------*/
+.column-9, .column-8, .column-6, .column-4 , .column-3 {
+	float: left;
+	display: table-cell;
+}
+
+.column-9 {
+	width: 75%;
+}
+
+.column-8	{
+	width: 66.666%;
+}
+
+.column-6 {
+	width: 50%;
+}
+
+.column-4 {
+	width: 33.3333%;
+}
+
+.column-3 {
+	width: 25%;
+}
+
+.column-2 {
+	width: 33.3333%;
+}
+
+
+
+
+
+} /*end of the media query*/
