@@ -1,4 +1,5 @@
 {% load static %}
+{% load my_templatetag %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,9 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static 'j34main/css/phone-default.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'j34main/css/tablet.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'j34main/css/desktop.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'j34main/css/phone-default.css' %}?cacheId={{ 'static/j34main/css/phone-default.css' | create_cache_id }}">
+    <link rel="stylesheet" type="text/css" href="{% static 'j34main/css/tablet.css' %}?cacheId={{ 'static/j34main/css/tablet.css' | create_cache_id }}">
+    <link rel="stylesheet" type="text/css" href="{% static 'j34main/css/desktop.css' %}?cacheId={{ 'static/j34main/css/desktop.css' | create_cache_id }}">
     <link rel="shortcut icon" type="image/png" href="{% static 'j34main/img/34favicon.ico' %}"/>
   </head>
   <body>
