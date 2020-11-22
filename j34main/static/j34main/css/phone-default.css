@@ -13,7 +13,22 @@ body {
 	color: #000;
 	font-size:16px;
 	font-family: 'Montserrat', sans-serif;
-	font-weight: 400; /*also loaded 700*/
+}
+
+p {
+	font-width: 400;
+}
+
+h1 {
+	font-width: 700;
+}
+
+h2 {
+	font-width: 600;
+}
+
+h3 {
+	font-width: 500;
 }
 
 .quote	{
@@ -120,7 +135,7 @@ a:active {
 
 /*------ PHOTO STYLING ------*/
 
-figure.col4, figure.col6{
+figure.col4, figure.col6 {
 	width: 28%;
 	margin-left: 2%;
 	float: right;

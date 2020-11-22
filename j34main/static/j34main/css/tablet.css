@@ -41,6 +41,10 @@ a:hover {
 	
 /*--------CONTENT---------*/
 
+figure.col4, figure.col6 {
+	width: 40%;
+}
+
 #contentWrapper {
 	display: table;
 	width: 100%;
@@ -52,9 +56,7 @@ figure.col6full{
 	float: right;
 }
 
-figure.col6{
-	width: 48%;
-}
+
 
 /*-------COLUMNS----------*/
 .column-9, .column-8, .column-6, .column-4 , .column-3 {

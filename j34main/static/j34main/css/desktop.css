@@ -20,7 +20,9 @@ nav ul li a:hover {
 
 /*------CONTENT---------*/
 
-
+figure.col4, figure.col6 {
+	width: 28%;
+}
 
 /*-------COLUMNS----------*/
 .column-2 {
