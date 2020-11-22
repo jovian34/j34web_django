@@ -19,7 +19,7 @@ DEBUG = bool(int(os.environ.get('DEVELOP')))
 
 if not bool(int(os.environ.get('DEVELOP'))):
     ALLOWED_HOSTS = ['jovian34.com', 'www.jovian34.com',
-                     '167.172.239.231', ]
+                     '104.236.0.165', ]
 else:
     ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'www.jovian34.com']
 
