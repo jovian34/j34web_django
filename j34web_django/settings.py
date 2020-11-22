@@ -21,7 +21,7 @@ if not bool(int(os.environ.get('DEVELOP'))):
     ALLOWED_HOSTS = ['jovian34.com', 'www.jovian34.com',
                      '167.172.239.231', ]
 else:
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'www.jovian34.com']
 
 # Application definition
 
