@@ -41,6 +41,7 @@ a:hover {
 	
 /*--------CONTENT---------*/
 
+
 figure.col4, figure.col6 {
 	width: 40%;
 }
@@ -50,12 +51,6 @@ figure.col4, figure.col6 {
 	width: 100%;
 }
 	
-figure.col6full{
-	width: 48%;
-	margin-left: 2%;
-	float: right;
-}
-
 
 
 /*-------COLUMNS----------*/

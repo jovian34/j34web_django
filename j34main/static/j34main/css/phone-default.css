@@ -135,7 +135,8 @@ a:active {
 
 /*------ PHOTO STYLING ------*/
 
-figure.col4, figure.col6 {
+
+figure.col3, figure.col4, figure.col6 {
 	width: 28%;
 	margin-left: 2%;
 	float: right;
@@ -143,7 +144,8 @@ figure.col4, figure.col6 {
 	background-color: rgba(0,0,0,0.3);
 }
 
-figure.col4full, figure.col6full{
+figure.col3full, figure.col4full, figure.col6full{
+	margin-left: 2%;
 	width: 100%;
 	position: relative;
 	overflow: hidden; 
@@ -157,7 +159,7 @@ figcaption	{
 	padding: .3em 0;
 	font-weight: 700;
 }
-figure.col4 img, figure.col6 img, figure.col4full img, figure.col6full img {
+figure.col4 img, figure.col6 img, figure.col3full img, figure.col4full img, figure.col6full img {
 	width: 100%;
 }
 
