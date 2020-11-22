@@ -21,6 +21,7 @@
             {% autoescape off %}
             {{ article.teaser }}
             {% endautoescape %}
+            <p>... for more <a href="{% url 'blog' article.pk %}">click here</a></p>
         </div>
 
     {% endfor %}
