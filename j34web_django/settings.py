@@ -27,6 +27,7 @@ else:
 
 INSTALLED_APPS = [
     'j34main.apps.J34MainConfig',
+    'pitch_tracker.apps.PitchTrackerConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
