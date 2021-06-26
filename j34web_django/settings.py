@@ -23,6 +23,9 @@ if not bool(int(os.environ.get('DEVELOP'))):
 else:
     ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'www.jovian34.com']
 
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 # Application definition
 
 INSTALLED_APPS = [
