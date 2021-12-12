@@ -37,9 +37,11 @@ h3 {
 	color: #336600;
 }
 
-
-
-
+.paragraph-photo {
+	float: left;
+	width: 70%;
+	padding: 5px;
+}
 /*--------HEADER---------------*/
 #headerWrapper {
 	background-color: #D7D8A8;
