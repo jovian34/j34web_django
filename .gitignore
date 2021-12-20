@@ -1,3 +1,9 @@
 /env/
 /j34web_django/.env
 /j34main/static/admin/
+/.venv310_1/
+.vscode/launch.json
+j34main/__pycache__
+j34main/migrations/__pycache__
+j34main/templatetags/__pycache__
+j34web_django/__pycache__
