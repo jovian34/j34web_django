@@ -1,5 +1,6 @@
 /env/
 /env310/
+/venv310/
 /j34web_django/.env
 /j34main/static/admin/
 /.venv310_1/
