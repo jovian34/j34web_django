@@ -23,8 +23,30 @@ if not bool(int(os.environ.get("DEVELOP"))):
         "www.jovian34.com",
         "104.236.0.165",
     ]
+    
+    DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "j34web_django",
+        "USER": "j34web_django",
+        "PASSWORD": os.environ.get("DB_PASSWORD"),
+        "HOST": "167.71.104.42",
+        "PORT": "5432",
+    }
+}
 else:
-    ALLOWED_HOSTS = ["localhost", "127.0.0.1", "www.jovian34.com"]
+    ALLOWED_HOSTS = ["localhost", "127.0.0.1", ]
+
+    DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "j34web_dev",
+        "USER": "j34web_django",
+        "PASSWORD": os.environ.get("DB_PASSWORD"),
+        "HOST": "167.71.104.42",
+        "PORT": "5432",
+    }
+}
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
@@ -72,19 +94,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "j34web_django.wsgi.application"
 
 
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "j34web_django",
-        "USER": "j34web_django",
-        "PASSWORD": os.environ.get("DB_PASSWORD"),
-        "HOST": "167.71.104.42",
-        "PORT": "5432",
-    }
-}
 
 
 # Password validation
