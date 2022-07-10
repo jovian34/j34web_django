@@ -13,7 +13,7 @@ html {
 
 body {
   background-color: #D7D8A8;
-  color: #000;
+  color: black;
   font-size: 16px;
   font-family: "Montserrat", sans-serif;
 }
@@ -60,12 +60,12 @@ h3 {
 
 /*--------NAVIGATION------------*/
 button#showPhoneNav {
-  color: #fff;
+  color: white;
   font-weight: 600;
   display: block;
   border: 1px solid #222;
   border-radius: 1.5em;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: #222;
   width: 100%;
   padding: 0.75em 0;
   margin: 2% 0;
@@ -80,10 +80,10 @@ ul#myNav {
 }
 
 nav ul {
-  border: 1px #ccc solid;
+  border: 1px #cccccc solid;
   border-radius: 0.5em;
   margin: 0.5em 2%;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: #cccccc;
 }
 
 nav ul li:first-child a {
@@ -95,7 +95,7 @@ nav ul li a {
   text-align: center;
   padding: 0.6em;
   border-top: 1px solid #cccccc;
-  color: #000;
+  color: black;
   text-decoration: none;
   font-weight: 700;
 }
@@ -139,7 +139,6 @@ a:active {
 
 .color-1 {
   background-color: #FFCC66;
-  /*yellowish*/
 }
 
 /*------ PHOTO STYLING ------*/
@@ -147,8 +146,8 @@ figure.col3, figure.col4, figure.col6 {
   width: 28%;
   margin-left: 2%;
   float: right;
-  border: 1px solid #999;
-  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid #222;
+  background-color: #999;
 }
 
 figure.col3full, figure.col4full, figure.col6full {
@@ -156,8 +155,8 @@ figure.col3full, figure.col4full, figure.col6full {
   width: 100%;
   position: relative;
   overflow: hidden;
-  border: 1px solid #999;
-  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid #222;
+  background-color: #999;
 }
 
 figcaption {
@@ -179,7 +178,7 @@ figure.col4 img, figure.col6 img, figure.col3full img, figure.col4full img, figu
 }
 
 .altTable {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: #cccccc;
 }
 
 #contentWrapper {
@@ -228,19 +227,19 @@ table, th, td {
 
 /*---------------FOOTER---------------*/
 #footerWrapper {
-  background-color: #979791;
+  background-color: #999;
 }
 
 footer {
   clear: both;
   font-size: 0.7em;
-  color: #fff;
+  color: white;
   text-align: center;
   padding: 0.6em;
 }
 
 footer a {
-  color: #fff;
+  color: white;
 }
 
 #green {
@@ -258,7 +257,7 @@ footer a {
 @media only screen and (min-width: 900px) {
   /*NAVIGATION HERE*/
   #navWrapper {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: #cccccc;
     padding: 0;
   }
 

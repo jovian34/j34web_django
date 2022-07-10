@@ -2,7 +2,7 @@
 
 /*NAVIGATION HERE*/
 #navWrapper {
-	background-color: rgba(255,255,255,0.8);
+	background-color: $grey;
 	padding: 0;
 	}
 button#showPhoneNav {
@@ -16,7 +16,7 @@ button#showPhoneNav {
 		border: none;
 		border-radius: 0;
 		background-color: transparent;
-		border-left: 1px solid black;
+		border-left: 1px solid $black;
 	}
 	nav ul li {
 		float: left;
@@ -26,17 +26,17 @@ button#showPhoneNav {
 		padding: 1em 1.5em;
 		font-weight: 700;
 		font-size: .9em;
-		border-right: 1px solid black;
+		border-right: 1px solid $black;
 	}
 	
 	nav ul li.active a {
-		color: #336600;
-			background-color: #FFCC66;
+		color: $link;
+			background-color: $yellow;
 	}
 
 	/* mouse over link */
 a:hover {
-    color: #669900;
+    color: $green-lite;
 }
 	
 /*--------CONTENT---------*/
