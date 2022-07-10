@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+//Import a Google font
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+
+// Set jovian34 brand colors
+$olive: #D7D8A8;
+$yellow: #FFCC66;
+$apricot: #eb8b95;
+$tan: #f2b7bd;
+$green: #336600;
+$burgandy: #993333;
+
+
+// Set global variables
+$family-sans-serif: "Monserrat", sans-serif;
+$body-background-color: $olive;
+$link: $green;
+
+
+// Import other applied scss files
+@import "partial/phone-default.scss";
+@import "partial/tablet.scss";
+@import "partial/desktop.scss";
