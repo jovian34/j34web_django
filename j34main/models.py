@@ -1,3 +1,5 @@
+from tkinter import CASCADE
+from unicodedata import category
 from django.db import models
 
 
@@ -10,6 +12,13 @@ class Service(models.Model):
         return self.service_name
 
 
+class Category(models.Model):
+    cat_name = models.CharField(null=False, max_length=100,)
+
+    def __str__(self) -> str:
+        return self.cat_name
+
+
 class Content(models.Model):
     title = models.CharField(null=False, max_length=100,)
     sub_title = models.CharField(default=None, blank=True, max_length=100)
@@ -20,6 +29,7 @@ class Content(models.Model):
     image_caption = models.CharField(default='', blank=True, max_length=100)
     teaser = models.TextField(null=False)
     content = models.TextField(null=False)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
