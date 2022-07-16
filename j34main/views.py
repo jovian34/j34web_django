@@ -1,15 +1,17 @@
 from django.shortcuts import get_object_or_404, render
 
-from .models import Content
+from .models import Content, Category
 
 
 def index(request):
+    categories = Category.objects.all()
     articles = Content.objects.all().order_by('-pub_date')[:4]
     row_one = articles[0:2]
     row_two = articles[2:4]
     context = {
         'row_one': row_one,
         'row_two': row_two,
+        'categories': categories,
     }
     return render(request, 'j34main/index.html', context)
 

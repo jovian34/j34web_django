@@ -8,6 +8,14 @@
         <h1>jovian34 LLC Blogs</h1>
     </div>
 
+    {% for category in categories %}
+        <div class="nav-buttons column-3">
+            <h2>{{ category.cat_name }}</h2>
+        </div>
+    {% endfor %}
+
+    <div class="column-12"></div>
+
     {% for article in row_one %}
         <div class="column-6">
             <h1>{{ article.title }}</h1>

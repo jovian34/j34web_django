@@ -16,19 +16,19 @@ body {
 }
 
 p {
-	font-width: 400;
+	font-size: 400;
 }
 
 h1 {
-	font-width: 700;
+	font-size: 700;
 }
 
 h2 {
-	font-width: 600;
+	font-size: 600;
 }
 
 h3 {
-	font-width: 500;
+	font-size: 500;
 }
 
 .quote	{
@@ -56,49 +56,14 @@ h3 {
 
 
 /*--------NAVIGATION------------*/
-button#showPhoneNav {
-	color: $white;
-	font-weight:600;
-	display:block;
-	border:1px solid $black-subtle;
-	border-radius:1.5em;
-	background-color: $black-subtle;
-	width: 100%;
-	padding: .75em 0;
-	margin: 2% 0;
-}
 
-ul#myNav {
-	display: none;
-}
-
-#navWrapper	{
-	padding: .75em 2%;
-
-}
-
-nav ul {
-	border: 1px $grey solid;
-	border-radius: .5em;
-	margin: .5em 2%;
-	background-color: $grey;
-}
-nav ul li:first-child a {
-	border-top: none;
-}
-
-nav ul li a {
-	display: block;
+.nav-buttons {
 	text-align: center;
-	padding: .6em;
-	border-top: 1px solid $grey;
-	color: $black;
-	text-decoration: none;
-	font-weight: 700;
-}
-
-nav ul li.active a {
-	color: $yellow;	
+	background-color: $green-lite;
+	color: $black-subtle;
+	border-style: solid;
+	border-width: 1%;
+	border-color: $black-subtle;
 }
 
 /* unvisited link */

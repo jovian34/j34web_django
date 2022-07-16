@@ -11,19 +11,6 @@ header, nav, .row, footer {
 /*-------NAV---------*/
 
 
-nav ul li a {
-	transition: background .3s linear;
-}
-nav ul li a:hover {
-	background-color: $yellow;
-}
-
-/*------CONTENT---------*/
-
-figure.col4, figure.col6 {
-	width: 28%;
-}
-
 /*-------COLUMNS----------*/
 .column-2 {
 	width: 16.6666%;
