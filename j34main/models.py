@@ -29,7 +29,7 @@ class Content(models.Model):
     image_caption = models.CharField(default='', blank=True, max_length=100)
     teaser = models.TextField(null=False)
     content = models.TextField(null=False)
-    # category = models.ManyToManyField(Category, default=2)
+    categories = models.ManyToManyField(Category)
 
     def __str__(self):
         return self.title
