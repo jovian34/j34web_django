@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css"
           href="{% static 'j34main/css/style.min.css' %}?cacheId={{ 'static/j34main/css/style.min.css' | create_cache_id }}">
   </head>
+
   <body>
 
   <div id="contentWrapper">
@@ -33,7 +34,7 @@
 
 
   </div>
-  </body>
+  
 
   <div id="footerWrapper">
         <footer>
@@ -41,4 +42,9 @@
             <p>website maintained by <a href="https://github.com/jovian34">Carl James</a></p>
         </footer>
   </div>
+  
+  <script src="{% static 'j34main/js/htmx.min.js' %}?cacheId={{ 'static/j34main/js/htmx.min.js' | create_cache_id }}"></script>
+  
+  </body>
+
 </html>
