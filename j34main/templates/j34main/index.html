@@ -9,50 +9,18 @@
     </div>
 
     {% for category in categories %}
-        <div class="nav-buttons column-3">
-            <h2>{{ category.cat_name }}</h2>
-        </div>
+        
+            <div class="nav-buttons column-3" hx-get="{% url 'category_blogs' category.pk %}" hx-target="#cat_blogs">
+                <h2>{{ category.cat_name }}</h2>
+            </div>
+        
     {% endfor %}
 
     <div class="column-12"></div>
 
-    {% for article in row_one %}
-        <div class="column-6">
-            <h1>{{ article.title }}</h1>
-            <h2>{{ article.sub_title }}</h2>
-            <p>by {{ article.author }} | {{ article.location }} | {{ article.pub_date.date }}</p>
-            <figure class="col6">
-                <img src="{{ article.featured_image }}">
-                <figcaption>{{ article.image_caption }}</figcaption>
-            </figure>
+    <div id="cat_blogs"></div>
 
-            {% autoescape off %}
-            {{ article.teaser }}
-            {% endautoescape %}
-            <p>... for more <a href="{% url 'blog' article.pk %}">click here</a></p>
-        </div>
-
-    {% endfor %}
-
-    <div class="column-12"><br clear="both"></div>
-
-    {% for article in row_two %}
-        <div class="column-6">
-            <h1>{{ article.title }}</h1>
-            <h2>{{ article.sub_title }}</h2>
-            <p>by {{ article.author }} | {{ article.location }} | {{ article.pub_date.date }}</p>
-            <figure class="col6">
-                <img src="{{ article.featured_image }}">
-                <figcaption>{{ article.image_caption }}</figcaption>
-            </figure>
-
-            {% autoescape off %}
-            {{ article.teaser }}
-            {% endautoescape %}
-            <p>... for more <a href="{% url 'blog' article.pk %}">click here</a></p>
-        </div>
-
-    {% endfor %}
+    
 
     <br clear="both">
     <div class="column-12">
