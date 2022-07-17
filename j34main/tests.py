@@ -205,12 +205,22 @@ class ContentViewTests(TestCase):
         self.assertContains(response, contain_text)
         self.assertEqual(response.status_code, 200)
 
-    def test_sub_index_page_drops_old_blogs(self):
+    def test_index_all_category_partial_drops_old_blogs(self):
         client = Client()
         category = self.cat1
         response = client.get(f'/j34/category_blogs/{category.pk}/')
         contain_text = "its existence as a separate"
         not_contain_text = "New Mexico officials"
+        self.assertContains(response, contain_text)
+        self.assertNotContains(response, not_contain_text)
+        self.assertEqual(response.status_code, 200)
+
+    def test_index_small_category_partial_only_renders_filtered_blogs(self):
+        client = Client()
+        category = self.cat3
+        response = client.get(f'/j34/category_blogs/{category.pk}/')
+        contain_text = "consequences for websites that host user"
+        not_contain_text = "takes more than a solid Wi-Fi"
         self.assertContains(response, contain_text)
         self.assertNotContains(response, not_contain_text)
         self.assertEqual(response.status_code, 200)
