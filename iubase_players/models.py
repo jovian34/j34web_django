@@ -15,14 +15,23 @@ class Player(models.Model):
     bats = models.CharField(blank=True, max_length=1,)
     throws = models.CharField(blank=True, max_length=1,)
 
+    def __str__(self) -> str:
+        return f"{self.first} {self.last}"
+
 
 class Level(models.Model):
     description = models.CharField(null=False, max_length=100,)
+
+    def __str__(self) -> str:
+        return self.description
 
 
 class League(models.Model):
     description = models.CharField(null=False, max_length=100,)
     level = models.ForeignKey(Level, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.description
 
 
 class Team(models.Model):
@@ -32,13 +41,22 @@ class Team(models.Model):
     state = models.CharField(blank=True, max_length=100,)
     country = models.CharField(null=False, max_length=100,)
 
+    def __str__(self) -> str:
+        return self.name
+
 
 class TransactionType(models.Model):
     description = models.CharField(null=False, max_length=100,)
 
+    def __str__(self) -> str:
+        return self.description
+
 
 class Position(models.Model):
     description = models.CharField(null=False, max_length=100,)
+
+    def __str__(self) -> str:
+        return self.description
 
 
 class Transaction(models.Model):
@@ -51,7 +69,10 @@ class Transaction(models.Model):
     position = models.ForeignKey(Position, blank=True, on_delete=models.CASCADE)
     trans_type = models.ForeignKey(TransactionType, on_delete=models.CASCADE)
     draft_round = models.IntegerField(blank=True, )
-    pro_org = models.CharField(null=False, max_length=100,)
+    pro_org = models.CharField(blank=True, max_length=100,)
+
+    def __str__(self) -> str:
+        return f"{self.date_announced}"
 
 
 class Academic(models.Model):
@@ -61,6 +82,10 @@ class Academic(models.Model):
     degree_level = models.CharField(null=False, max_length=100,)
     major = models.CharField(null=False, max_length=100,)
 
+    def __str__(self) -> str:
+        return self.degree_level
+
+
 class Article(models.Model):
     player = models.ManyToManyField(Player)
     title = models.CharField(null=False, max_length=100,)
@@ -68,11 +93,18 @@ class Article(models.Model):
     publication = models.CharField(null=False, max_length=100,)
     date = models.DateField(blank=True, )
 
+    def __str__(self) -> str:
+        return self.title
+
 
 class Headshot(models.Model):
     player = models.ManyToManyField(Player)
     url = models.URLField(null=False)
     date = models.DateField(blank=True,)
+
+    def __str__(self) -> str:
+        return self.url
+
 
 class Photo(models.Model):
     player = models.ManyToManyField(Player)
@@ -80,6 +112,9 @@ class Photo(models.Model):
     date = models.DateField(default=now)
     description = models.CharField(null=False, max_length=100,)
     credit = models.CharField(null=False, max_length=100,)
+
+    def __str__(self) -> str:
+        return self.description
 
 
 class Accolade(models.Model):
@@ -89,10 +124,15 @@ class Accolade(models.Model):
     year = models.IntegerField(null=False)
     season = models.CharField(null=False, max_length=10,)
 
+    def __str__(self) -> str:
+        return self.description
 
 
 class SocialPlatform(models.Model):
     platform = models.CharField(null=False, max_length=100,)
+
+    def __str__(self) -> str:
+        return self.platform
 
 
 class PlayerSocial(models.Model):
@@ -101,12 +141,18 @@ class PlayerSocial(models.Model):
     url = models.URLField(null=False)
     handle = models.CharField(blank=True, max_length=100,)
 
+    def __str__(self) -> str:
+        return self.url
+
 
 class TeamSocial(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     platform = models.ForeignKey(SocialPlatform, on_delete=models.CASCADE)
     url = models.URLField(null=False)
     handle = models.CharField(blank=True, max_length=100,)
+
+    def __str__(self) -> str:
+        return self.url
 
     
 
