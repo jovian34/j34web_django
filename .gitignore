@@ -1,7 +1,7 @@
 /env/
 /env310/
 /venv310/
-/j34web_django/.env
+/django_project/.env
 /j34main/static/admin/
 /.venv310_1/
 .vscode/launch.json
@@ -11,4 +11,4 @@ iubase_players/migrations/__pycache__
 j34main/__pycache__
 j34main/migrations/__pycache__
 j34main/templatetags/__pycache__
-j34web_django/__pycache__
+django_project/__pycache__
