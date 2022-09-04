@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import date
+from django.utils.timezone import now
 
 
 class Player(models.Model):
@@ -40,7 +40,7 @@ class Position(models.Model):
 
 
 class Transaction(models.Model):
-    date_announced = models.DateField(null=False, default=date.today())
+    date_announced = models.DateField(null=False, default=now)
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     year = models.IntegerField(null=False)
