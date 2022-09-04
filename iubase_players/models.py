@@ -72,7 +72,7 @@ class Headshot(models.Model):
     url = models.URLField(null=False)
     date = models.DateField()
 
-class Photos(models.Model):
+class Photo(models.Model):
     player = models.ManyToManyField(Player)
     url = models.URLField(null=False)
     date = models.DateField()
