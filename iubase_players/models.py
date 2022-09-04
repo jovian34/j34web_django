@@ -4,16 +4,16 @@ from django.utils.timezone import now
 
 class Player(models.Model):
     first = models.CharField(null=False, max_length=100,)
-    middle = models.CharField(null=True, max_length=100,)
+    middle = models.CharField(blank=True, max_length=100,)
     last = models.CharField(null=False, max_length=100,)
-    hometown = models.CharField(null=True, max_length=100,)
-    state = models.CharField(null=True, max_length=100,)
-    country = models.CharField(null=True, max_length=100,)
-    birthdate = models.DateField(null=True, )
-    height = models.FloatField(null=True, )
-    weight = models.FloatField(null=True, )
-    bats = models.CharField(null=True, max_length=1,)
-    throws = models.CharField(null=True, max_length=1,)
+    hometown = models.CharField(blank=True, max_length=100,)
+    state = models.CharField(blank=True, max_length=100,)
+    country = models.CharField(blank=True, max_length=100,)
+    birthdate = models.DateField(blank=True, )
+    height = models.FloatField(blank=True, )
+    weight = models.FloatField(blank=True, )
+    bats = models.CharField(blank=True, max_length=1,)
+    throws = models.CharField(blank=True, max_length=1,)
 
 
 class Level(models.Model):
@@ -29,7 +29,7 @@ class Team(models.Model):
     name = models.CharField(null=False, max_length=100,)
     league = models.ForeignKey(League, on_delete=models.CASCADE)
     city = models.CharField(null=False, max_length=100,)
-    state = models.CharField(null=True, max_length=100,)
+    state = models.CharField(blank=True, max_length=100,)
     country = models.CharField(null=False, max_length=100,)
 
 
@@ -44,20 +44,20 @@ class Position(models.Model):
 class Transaction(models.Model):
     date_announced = models.DateField(null=False, default=now)
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
-    team = models.ForeignKey(Team, null=True, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, blank=True, on_delete=models.CASCADE)
     year = models.IntegerField(null=False)
     season = models.CharField(null=False, max_length=10,)
-    jersey = models.IntegerField(null=True, )
-    position = models.ForeignKey(Position, null=True, on_delete=models.CASCADE)
+    jersey = models.IntegerField(blank=True, )
+    position = models.ForeignKey(Position, blank=True, on_delete=models.CASCADE)
     trans_type = models.ForeignKey(TransactionType, on_delete=models.CASCADE)
-    draft_round = models.IntegerField(null=True, )
+    draft_round = models.IntegerField(blank=True, )
     pro_org = models.CharField(null=False, max_length=100,)
 
 
 class Academic(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
     school = models.ForeignKey(Team, on_delete=models.CASCADE)
-    degree_date = models.DateField(null=True, )
+    degree_date = models.DateField(blank=True, )
     degree_level = models.CharField(null=False, max_length=100,)
     major = models.CharField(null=False, max_length=100,)
 
@@ -66,13 +66,13 @@ class Article(models.Model):
     title = models.CharField(null=False, max_length=100,)
     url = models.URLField(null=False)
     publication = models.CharField(null=False, max_length=100,)
-    date = models.DateField(null=True, )
+    date = models.DateField(blank=True, )
 
 
 class Headshot(models.Model):
     player = models.ManyToManyField(Player)
     url = models.URLField(null=False)
-    date = models.DateField(null=True,)
+    date = models.DateField(blank=True,)
 
 class Photo(models.Model):
     player = models.ManyToManyField(Player)
@@ -99,14 +99,14 @@ class PlayerSocial(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
     platform = models.ForeignKey(SocialPlatform, on_delete=models.CASCADE)
     url = models.URLField(null=False)
-    handle = models.CharField(null=True, max_length=100,)
+    handle = models.CharField(blank=True, max_length=100,)
 
 
 class TeamSocial(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     platform = models.ForeignKey(SocialPlatform, on_delete=models.CASCADE)
     url = models.URLField(null=False)
-    handle = models.CharField(null=True, max_length=100,)
+    handle = models.CharField(blank=True, max_length=100,)
 
     
 
