@@ -5,6 +5,9 @@
 /j34main/static/admin/
 /.venv310_1/
 .vscode/launch.json
+iubase_players/__pycache__
+j34main/migrations/__pycache__
+iubase_players/migrations/__pycache__
 j34main/__pycache__
 j34main/migrations/__pycache__
 j34main/templatetags/__pycache__

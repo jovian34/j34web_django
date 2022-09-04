@@ -37,6 +37,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 INSTALLED_APPS = [
     "j34main.apps.J34MainConfig",
+    "iubase_players.apps.IubasePlayersConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -125,7 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "j34main/static/")
+STATIC_ROOT = os.path.join(BASE_DIR, "j34web_django/static/")
 
 if not bool(int(os.environ.get("DEVELOP"))):
     # added due to security warnings

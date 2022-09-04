@@ -20,12 +20,12 @@ class Level(models.Model):
 
 class League(models.Model):
     description = models.CharField(null=False, max_length=100,)
-    level = models.ForeignKey(Level)
+    level = models.ForeignKey(Level, on_delete=models.CASCADE)
 
 
 class Team(models.Model):
     name = models.CharField(null=False, max_length=100,)
-    league = models.ForeignKey(League)
+    league = models.ForeignKey(League, on_delete=models.CASCADE)
     city = models.CharField(null=False, max_length=100,)
     state = models.CharField(max_length=100,)
     country = models.CharField(null=False, max_length=100,)
@@ -41,20 +41,20 @@ class Position(models.Model):
 
 class Transaction(models.Model):
     date_announced = models.DateField(null=False, default=date.today())
-    player = models.ForeignKey(Player)
-    team = models.ForeignKey(Team)
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
     year = models.IntegerField(null=False)
     season = models.CharField(null=False, max_length=10,)
     jersey = models.IntegerField()
-    position = models.ForeignKey()
-    trans_type = models.ForeignKey(TransactionType)
+    position = models.ForeignKey(Position, on_delete=models.CASCADE)
+    trans_type = models.ForeignKey(TransactionType, on_delete=models.CASCADE)
     draft_round = models.IntegerField()
     pro_org = models.CharField(null=False, max_length=100,)
 
 
 class Academic(models.Model):
-    player = models.ForeignKey(Player)
-    school = models.ForeignKey(Team)
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
+    school = models.ForeignKey(Team, on_delete=models.CASCADE)
     degree_date = models.DateField()
     degree_level = models.CharField(null=False, max_length=100,)
     major = models.CharField(null=False, max_length=100,)
@@ -81,13 +81,32 @@ class Photos(models.Model):
 
 
 class Accolade(models.Model):
-    player = models.ForeignKey(Player)
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
     description = models.CharField(null=False, max_length=100,)
     organization = models.CharField(null=False, max_length=100,)
     year = models.IntegerField(null=False)
     season = models.CharField(null=False, max_length=10,)
 
 
+
+class SocialPlatform(models.Model):
+    platform = models.CharField(null=False, max_length=100,)
+
+
+class PlayerSocial(models.Model):
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
+    platform = models.ForeignKey(SocialPlatform, on_delete=models.CASCADE)
+    url = models.URLField(null=False)
+    handle = models.CharField(null=False, max_length=100,)
+
+
+class TeamSocial(models.Model):
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    platform = models.ForeignKey(SocialPlatform, on_delete=models.CASCADE)
+    url = models.URLField(null=False)
+    handle = models.CharField(null=False, max_length=100,)
+
+    
 
 
 
