@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+//Import a Google font
+@import url('https://fonts.googleapis.com/css2?family=Gudea:wght@400;500;600;700&display=swap');
+
+
+// Set iubase brand colors
+$iu-orange: #DF3603;
+$iu-gold: #FFAA00;
+$iu-green: #056e41;
+$iu-green-lite: #63B363;
+$grey: #cccccc;
+$grey-dark: #999;
+$iu-crimson: #990000;
+$iu-red: #DC231E;
+$black: black;
+$iu-black: #243142;
+$iu-cream: white;
+$iu-blue: #006298;
+$iu-purple: #59264D;
+
+
+// Set global variables
+$family-sans-serif: "Gudea", sans-serif;
+$body-background-color: $iu-cream;
+$body-text-color: $iu-black;
+$link: $iu-crimson;
+$link-visited: $iu-purple;
+$link-active: $iu-red;
+$footer-background-color: $grey-dark;
+$footer-text-color: $iu-cream;
+
+
+// Import other applied scss files
+@import "partial/phone-default.scss";
+
+
+// version 0.1.1

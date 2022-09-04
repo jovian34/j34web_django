@@ -12,3 +12,5 @@ j34main/__pycache__
 j34main/migrations/__pycache__
 j34main/templatetags/__pycache__
 django_project/__pycache__
+django_project/static/iubase_players/scss/.sass-cache
+django_project/static/j34main/scss/.sass-cache
