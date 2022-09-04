@@ -65,10 +65,10 @@ class Transaction(models.Model):
     team = models.ForeignKey(Team, blank=True, on_delete=models.CASCADE)
     year = models.IntegerField(null=False)
     season = models.CharField(null=False, max_length=10,)
-    jersey = models.IntegerField(blank=True, )
+    jersey = models.IntegerField(null=True)
     position = models.ForeignKey(Position, blank=True, on_delete=models.CASCADE)
     trans_type = models.ForeignKey(TransactionType, on_delete=models.CASCADE)
-    draft_round = models.IntegerField(blank=True, )
+    draft_round = models.IntegerField(null=True)
     pro_org = models.CharField(blank=True, max_length=100,)
 
     def __str__(self) -> str:
