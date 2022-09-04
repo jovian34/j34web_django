@@ -1,11 +1,11 @@
 from unicodedata import category
 from django.shortcuts import get_object_or_404, render
-from django.views.decorators.clickjacking import xframe_options_exempt
+
 
 from .models import Content, Category
 
 
-@xframe_options_exempt
+
 def index(request):
     categories = Category.objects.all()    
     context = {
