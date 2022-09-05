@@ -6,20 +6,20 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('iubase_players', '0003_alter_transaction_date_announced'),
+        ("iubase_players", "0003_alter_transaction_date_announced"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='player',
-            name='country',
-            field=models.CharField(default='USA', max_length=100),
+            model_name="player",
+            name="country",
+            field=models.CharField(default="USA", max_length=100),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='player',
-            name='state',
-            field=models.CharField(default='IN', max_length=100),
+            model_name="player",
+            name="state",
+            field=models.CharField(default="IN", max_length=100),
             preserve_default=False,
         ),
     ]

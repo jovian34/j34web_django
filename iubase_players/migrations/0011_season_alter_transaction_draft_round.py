@@ -6,20 +6,28 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('iubase_players', '0010_alter_transaction_draft_round_and_more'),
+        ("iubase_players", "0010_alter_transaction_draft_round_and_more"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Season',
+            name="Season",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('description', models.CharField(max_length=10)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("description", models.CharField(max_length=10)),
             ],
         ),
         migrations.AlterField(
-            model_name='transaction',
-            name='draft_round',
+            model_name="transaction",
+            name="draft_round",
             field=models.IntegerField(blank=True, default=None, null=True),
         ),
     ]

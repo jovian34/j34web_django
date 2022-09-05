@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('iubase_players', '0007_alter_transaction_pro_org'),
+        ("iubase_players", "0007_alter_transaction_pro_org"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='transaction',
-            name='draft_round',
+            model_name="transaction",
+            name="draft_round",
             field=models.IntegerField(null=True),
         ),
         migrations.AlterField(
-            model_name='transaction',
-            name='jersey',
+            model_name="transaction",
+            name="jersey",
             field=models.IntegerField(null=True),
         ),
     ]

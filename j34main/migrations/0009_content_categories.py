@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('j34main', '0008_remove_content_category'),
+        ("j34main", "0008_remove_content_category"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='content',
-            name='categories',
-            field=models.ManyToManyField(to='j34main.category'),
+            model_name="content",
+            name="categories",
+            field=models.ManyToManyField(to="j34main.category"),
         ),
     ]

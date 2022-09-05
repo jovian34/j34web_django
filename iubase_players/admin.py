@@ -1,6 +1,22 @@
 from django.contrib import admin
 
-from .models import Player, League, Level, Team, Season, Transaction, Position, TransactionType, Academic, Article, Headshot, Photo, PlayerSocial, SocialPlatform, TeamSocial
+from .models import (
+    Player,
+    League,
+    Level,
+    Team,
+    Season,
+    Transaction,
+    Position,
+    TransactionType,
+    Academic,
+    Article,
+    Headshot,
+    Photo,
+    PlayerSocial,
+    SocialPlatform,
+    TeamSocial,
+)
 
 
 admin.site.register(Player)

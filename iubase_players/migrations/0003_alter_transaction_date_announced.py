@@ -7,13 +7,13 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('iubase_players', '0002_rename_photos_photo_alter_transaction_date_announced'),
+        ("iubase_players", "0002_rename_photos_photo_alter_transaction_date_announced"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='transaction',
-            name='date_announced',
+            model_name="transaction",
+            name="date_announced",
             field=models.DateField(default=django.utils.timezone.now),
         ),
     ]

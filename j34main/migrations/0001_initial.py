@@ -7,29 +7,50 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Content',
+            name="Content",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=100)),
-                ('sub_title', models.CharField(blank=True, default=None, max_length=100)),
-                ('location', models.CharField(default='BLOOMINGTON, IN', max_length=100)),
-                ('pub_date', models.DateTimeField(verbose_name='date published')),
-                ('featured_image', models.URLField(blank=True, null=True)),
-                ('content', models.TextField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=100)),
+                (
+                    "sub_title",
+                    models.CharField(blank=True, default=None, max_length=100),
+                ),
+                (
+                    "location",
+                    models.CharField(default="BLOOMINGTON, IN", max_length=100),
+                ),
+                ("pub_date", models.DateTimeField(verbose_name="date published")),
+                ("featured_image", models.URLField(blank=True, null=True)),
+                ("content", models.TextField()),
             ],
         ),
         migrations.CreateModel(
-            name='Service',
+            name="Service",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('service_name', models.CharField(max_length=100)),
-                ('flat_rate', models.BooleanField(default=False)),
-                ('price', models.FloatField(blank=True, default=40.0, null=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("service_name", models.CharField(max_length=100)),
+                ("flat_rate", models.BooleanField(default=False)),
+                ("price", models.FloatField(blank=True, default=40.0, null=True)),
             ],
         ),
     ]

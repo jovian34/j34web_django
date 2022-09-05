@@ -7,17 +7,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('iubase_players', '0001_initial'),
+        ("iubase_players", "0001_initial"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='Photos',
-            new_name='Photo',
+            old_name="Photos",
+            new_name="Photo",
         ),
         migrations.AlterField(
-            model_name='transaction',
-            name='date_announced',
+            model_name="transaction",
+            name="date_announced",
             field=models.DateField(default=datetime.date(2022, 9, 4)),
         ),
     ]

@@ -17,12 +17,12 @@ if not bool(int(os.environ.get("DEVELOP"))):
         "www.jovian34.com",
         "104.236.0.165",
     ]
-    
+
 else:
-    ALLOWED_HOSTS = ["localhost", "127.0.0.1", ]
-
-    
-
+    ALLOWED_HOSTS = [
+        "localhost",
+        "127.0.0.1",
+    ]
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
@@ -80,7 +80,6 @@ DATABASES = {
         "PORT": "5432",
     }
 }
-
 
 
 # Password validation

@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('j34main', '0003_content_teaser'),
+        ("j34main", "0003_content_teaser"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='content',
-            name='image_caption',
-            field=models.CharField(blank=True, default='', max_length=100),
+            model_name="content",
+            name="image_caption",
+            field=models.CharField(blank=True, default="", max_length=100),
         ),
     ]
