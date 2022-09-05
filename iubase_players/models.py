@@ -119,9 +119,7 @@ class Transaction(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
     team = models.ForeignKey(Team, blank=True, on_delete=models.CASCADE)
     year = models.IntegerField(blank=False)
-    season = models.CharField(
-        max_length=10,
-    )
+    season = models.ForeignKey(Season, on_delete=models.CASCADE)
     jersey = models.IntegerField(blank=True, null=True, default=None)
     position = models.ForeignKey(Position, blank=True, on_delete=models.CASCADE)
     trans_type = models.ForeignKey(TransactionType, on_delete=models.CASCADE)
@@ -209,10 +207,7 @@ class Accolade(models.Model):
         max_length=30,
     )
     year = models.IntegerField(blank=False, default=now)
-    season = models.CharField(
-        null=False,
-        max_length=10,
-    )
+    season = models.ForeignKey(Season, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return self.description
