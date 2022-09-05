@@ -206,7 +206,7 @@ class Accolade(models.Model):
         blank=False,
         max_length=30,
     )
-    year = models.IntegerField(blank=False, default=now)
+    year = models.IntegerField()
     season = models.ForeignKey(Season, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
@@ -246,3 +246,7 @@ class TeamSocial(models.Model):
 
     def __str__(self) -> str:
         return self.url
+
+
+class SeasonRosters(models.Model):
+    pass
