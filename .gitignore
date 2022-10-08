@@ -9,3 +9,7 @@ j34main/__pycache__
 j34main/migrations/__pycache__
 j34main/templatetags/__pycache__
 j34web_django/__pycache__
+/django_project/__pycache__
+/django_project/.env
+/iubase_players/__pycache__
+/iubase_players/migrations/__pycache__
