@@ -1,6 +1,7 @@
 /env/
 /env310/
 /venv310/
+/venv311/
 /j34web_django/.env
 /j34main/static/admin/
 /.venv310_1/
@@ -13,3 +14,4 @@ j34web_django/__pycache__
 .env
 /iubase_players/__pycache__
 /iubase_players/migrations/__pycache__
+/j34_web_django/.env
