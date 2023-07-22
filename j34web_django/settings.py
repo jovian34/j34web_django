@@ -75,13 +75,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "j34web_django.wsgi.application"
 
+
+if bool(int(os.environ.get("DEVELOP"))):
+    host_ip = "localhost"
+else:
+    host_ip = "167.71.104.42"
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "j34web_django",
         "USER": "j34web_django",
         "PASSWORD": os.environ.get("DB_PASSWORD"),
-        "HOST": "167.71.104.42",
+        "HOST": host_ip,
         "PORT": "5432",
     }
 }
