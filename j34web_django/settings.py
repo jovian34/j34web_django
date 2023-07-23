@@ -77,9 +77,9 @@ WSGI_APPLICATION = "j34web_django.wsgi.application"
 
 
 if bool(int(os.environ.get("DEVELOP"))):
-    host_ip = "localhost"
+    host_name = "localhost"
 else:
-    host_ip = "167.71.104.42"
+    host_name = "cyllene.jovian34.com"
 
 DATABASES = {
     "default": {
@@ -87,7 +87,7 @@ DATABASES = {
         "NAME": "j34web_django",
         "USER": "j34web_django",
         "PASSWORD": os.environ.get("DB_PASSWORD"),
-        "HOST": host_ip,
+        "HOST": host_name,
         "PORT": "5432",
     }
 }
