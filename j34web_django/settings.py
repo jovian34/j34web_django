@@ -81,6 +81,9 @@ if bool(int(os.environ.get("DEVELOP"))):
 else:
     host_name = "cyllene.jovian34.com"
 
+if bool(int(os.environ.get("WSL"))):
+    host_name = "cyllene.jovian34.com"
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
