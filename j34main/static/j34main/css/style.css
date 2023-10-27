@@ -54,8 +54,7 @@ h3 {
 /*------BANNER-----*/
 .banner {
   width: 95%;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  align-content: center;
 }
 
 /*--------NAVIGATION------------*/
