@@ -1,6 +1,7 @@
 from environs import Env
 from pathlib import Path
 import os
+import django_project.templatetags
 
 env = Env()
 env.read_env()
@@ -8,9 +9,6 @@ env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
@@ -28,15 +26,11 @@ if not bool(int(os.environ.get("DEVELOP"))):
 else:
     ALLOWED_HOSTS = ["localhost", "127.0.0.1", ]
 
-    
-
-
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
-# Application definition
-
 INSTALLED_APPS = [
+    "django_project.apps.DjangoProjectConfig",
     "j34main.apps.J34MainConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -61,7 +55,7 @@ ROOT_URLCONF = "django_project.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
+        "DIRS": [BASE_DIR / "django_project/templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -82,9 +76,6 @@ if bool(int(os.environ.get("DEVELOP"))):
 else:
     host_name = "cyllene.jovian34.com"
 
-if bool(int(os.environ.get("WSL"))):
-    host_name = "cyllene.jovian34.com"
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -96,10 +87,6 @@ DATABASES = {
     }
 }
 
-
-
-# Password validation
-# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -135,7 +122,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "j34main/static/")
+STATIC_ROOT = os.path.join(BASE_DIR, "django_project/static/")
 
 if not bool(int(os.environ.get("DEVELOP"))):
     # added due to security warnings
