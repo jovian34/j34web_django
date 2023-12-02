@@ -3,15 +3,6 @@ from unicodedata import category
 from django.db import models
 
 
-class Service(models.Model):
-    service_name = models.CharField(null=False, max_length=100,)
-    flat_rate = models.BooleanField(default=False)
-    price = models.FloatField(default=40.0, blank=True, null=True)
-
-    def __str__(self):
-        return self.service_name
-
-
 class Category(models.Model):
     cat_name = models.CharField(null=False, max_length=100,)
 

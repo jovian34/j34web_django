@@ -1,5 +1,5 @@
 /.venv/
-/j34web_django/.env
+/django_project/.env
 /j34main/static/admin/
 /.venv310_1/
 .vscode/launch.json

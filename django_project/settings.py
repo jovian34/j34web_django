@@ -56,7 +56,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "j34web_django.urls"
+ROOT_URLCONF = "django_project.urls"
 
 TEMPLATES = [
     {
@@ -74,7 +74,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "j34web_django.wsgi.application"
+WSGI_APPLICATION = "django_project.wsgi.application"
 
 
 if bool(int(os.environ.get("DEVELOP"))):
