@@ -1,4 +1,5 @@
 /.venv/
+/.vscode/
 /django_project/.env
 /j34main/static/admin/
 /.venv310_1/
