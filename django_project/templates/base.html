@@ -41,6 +41,14 @@
             <p>Copyright &#169;{% this_year %} <a href="{% url 'index' %}">jovian34 LLC</a></p>
             <p>website maintained by <a href="https://github.com/jovian34">Carl James</a>: <a 
               rel="me" href="https://social.linux.pizza/@jovian34">Mastodon</a></p>
+              <hr>
+              {% if user.is_authenticated %}
+              <p>Welcome, {{ user.first_name}}.
+                You can <a href="{% url 'index' %}">add blog entries</a> 
+                or <a href="{% url 'logout' %}">logout</a>.</p>
+              {% else %}
+              <p><a href="{% url 'login' %}">Staff login</a></p>
+              {% endif %}
             
         </footer>
   </div>

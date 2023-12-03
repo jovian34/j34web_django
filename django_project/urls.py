@@ -7,6 +7,7 @@ from . import views
 urlpatterns = [
     path("", views.index, name="index"),
     path(f"j34/", include("j34main.urls")),
+    path("accounts/", include("django.contrib.auth.urls")),
     path(f"{os.environ.get('ADMIN_WORD')}/", admin.site.urls),
 ]
 
