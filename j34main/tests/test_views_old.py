@@ -3,7 +3,7 @@ import datetime
 from django.test import Client, TestCase
 from django.utils import timezone
 
-from .models import Content, Category
+from .. models import Content, Category
 
 
 class ContentViewTests(TestCase):
