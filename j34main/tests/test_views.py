@@ -38,3 +38,17 @@ def test_logged_in_user_welcomed(client):
     assert "jovian34 LLC Blogs" in str(response.content)
     assert "Balius" in str(response.content)
 
+@pytest.mark.django_db
+def test_logging_out_redirects(client):
+    user = User.objects.create_user(
+        username="balius",
+        email="balius@jovian34.com",
+        password="Hdbwrwbrj7239293skjhkasH72!",
+        first_name="Balius"
+    )
+    client.login(
+        username="balius",
+        password="Hdbwrwbrj7239293skjhkasH72!"
+    )
+    response = client.post("/accounts/logout/")
+    assert response.status_code == 302
