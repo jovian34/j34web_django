@@ -1,5 +1,7 @@
 import pytest
 
+from django.contrib.auth.models import User
+
 from datetime import datetime, timedelta
 from .. models import Content, Category
 
@@ -18,3 +20,21 @@ def test_login_template_rendered(client):
     response = client.get("/accounts/login/")
     assert response.status_code == 200
     assert "registration/login.html" in response.template_name
+
+@pytest.mark.django_db
+def test_logged_in_user_welcomed(client):
+    user = User.objects.create_user(
+        username="balius",
+        email="balius@jovian34.com",
+        password="Hdbwrwbrj7239293skjhkasH72!",
+        first_name="Balius"
+    )
+    client.login(
+        username="balius",
+        password="Hdbwrwbrj7239293skjhkasH72!"
+    )
+    response = client.get("/j34/")
+    assert response.status_code == 200
+    assert "jovian34 LLC Blogs" in str(response.content)
+    assert "Balius" in str(response.content)
+
