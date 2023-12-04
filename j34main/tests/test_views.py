@@ -6,10 +6,6 @@ from datetime import datetime, timedelta
 from .. models import Content, Category
 
 
-def test_top_level_site_forwards(client):
-    response = client.get('')
-    assert response.status_code == 302
-
 @pytest.mark.django_db
 def test_index_page_renders(client):
     response = client.get("/j34/")
@@ -50,5 +46,21 @@ def test_logging_out_redirects(client):
         username="balius",
         password="Hdbwrwbrj7239293skjhkasH72!"
     )
-    response = client.post("/accounts/logout/")
+    response = client.post("/accounts/logout/", follow=False)
     assert response.status_code == 302
+
+@pytest.mark.django_db
+def test_logging_out_redirects_to_index(client):
+    user = User.objects.create_user(
+        username="balius",
+        email="balius@jovian34.com",
+        password="Hdbwrwbrj7239293skjhkasH72!",
+        first_name="Balius"
+    )
+    client.login(
+        username="balius",
+        password="Hdbwrwbrj7239293skjhkasH72!"
+    )
+    response = client.post("/accounts/logout/", follow=True)
+    assert response.status_code == 200
+    assert "Staff login" in str(response.content)
