@@ -17,8 +17,8 @@ def test_login_template_rendered(client):
     assert response.status_code == 200
     assert "registration/login.html" in response.template_name
 
-@pytest.mark.django_db
-def test_logged_in_user_welcomed(client):
+@pytest.fixture
+def logged_user_balius(client):
     user = User.objects.create_user(
         username="balius",
         email="balius@jovian34.com",
@@ -29,38 +29,22 @@ def test_logged_in_user_welcomed(client):
         username="balius",
         password="Hdbwrwbrj7239293skjhkasH72!"
     )
+    return user
+
+@pytest.mark.django_db
+def test_logged_in_user_welcomed(client, logged_user_balius):
     response = client.get("/j34/")
     assert response.status_code == 200
     assert "jovian34 LLC Blogs" in str(response.content)
     assert "Balius" in str(response.content)
 
 @pytest.mark.django_db
-def test_logging_out_redirects(client):
-    user = User.objects.create_user(
-        username="balius",
-        email="balius@jovian34.com",
-        password="Hdbwrwbrj7239293skjhkasH72!",
-        first_name="Balius"
-    )
-    client.login(
-        username="balius",
-        password="Hdbwrwbrj7239293skjhkasH72!"
-    )
+def test_logging_out_redirects(client, logged_user_balius):
     response = client.post("/accounts/logout/", follow=False)
     assert response.status_code == 302
 
 @pytest.mark.django_db
-def test_logging_out_redirects_to_index(client):
-    user = User.objects.create_user(
-        username="balius",
-        email="balius@jovian34.com",
-        password="Hdbwrwbrj7239293skjhkasH72!",
-        first_name="Balius"
-    )
-    client.login(
-        username="balius",
-        password="Hdbwrwbrj7239293skjhkasH72!"
-    )
+def test_logging_out_redirects_to_index(client, logged_user_balius):
     response = client.post("/accounts/logout/", follow=True)
     assert response.status_code == 200
     assert "Staff login" in str(response.content)
