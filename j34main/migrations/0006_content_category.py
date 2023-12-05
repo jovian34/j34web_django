@@ -5,16 +5,19 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('j34main', '0005_category'),
+        ("j34main", "0005_category"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='content',
-            name='category',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='j34main.category'),
+            model_name="content",
+            name="category",
+            field=models.ForeignKey(
+                default=1,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="j34main.category",
+            ),
             preserve_default=False,
         ),
     ]

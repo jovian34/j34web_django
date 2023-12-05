@@ -4,16 +4,15 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('j34main', '0002_content_author'),
+        ("j34main", "0002_content_author"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='content',
-            name='teaser',
-            field=models.TextField(default='change'),
+            model_name="content",
+            name="teaser",
+            field=models.TextField(default="change"),
             preserve_default=False,
         ),
     ]

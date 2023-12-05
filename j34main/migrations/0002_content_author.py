@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('j34main', '0001_initial'),
+        ("j34main", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='content',
-            name='author',
-            field=models.CharField(default='Carl James', max_length=100),
+            model_name="content",
+            name="author",
+            field=models.CharField(default="Carl James", max_length=100),
         ),
     ]

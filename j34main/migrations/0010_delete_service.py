@@ -4,13 +4,12 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('j34main', '0009_content_categories'),
+        ("j34main", "0009_content_categories"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='Service',
+            name="Service",
         ),
     ]

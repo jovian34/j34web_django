@@ -4,17 +4,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('j34main', '0004_content_image_caption'),
+        ("j34main", "0004_content_image_caption"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Category',
+            name="Category",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('cat_name', models.CharField(max_length=100)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("cat_name", models.CharField(max_length=100)),
             ],
         ),
     ]
