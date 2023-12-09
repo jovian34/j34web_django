@@ -1,10 +1,8 @@
-from environs import Env
+from dotenv import load_dotenv
 from pathlib import Path
 import os
-import django_project.templatetags
 
-env = Env()
-env.read_env()
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -105,11 +103,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 # Registration
 
 LOGIN_REDIRECT_URL = "index"
 
 LOGOUT_REDIRECT_URL = "index"
+
 
 # Internationalization
 
@@ -121,6 +121,8 @@ USE_I18N = True
 
 USE_TZ = True
 
+
+# Static and Security
 
 STATIC_URL = "/static/"
 
