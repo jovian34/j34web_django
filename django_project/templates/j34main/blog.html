@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load markitup %}
+
 {% block title %}jovian34 LLC{% endblock %}
 
 {% block content %}
@@ -16,7 +18,7 @@
         </figure>
 
         {% autoescape off %}
-        {{ article.content }}
+        {{ article.content | markitup }}
         {% endautoescape %}
     </div>
 
