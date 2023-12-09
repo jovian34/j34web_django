@@ -138,4 +138,4 @@ if not bool(int(os.environ.get("DEVELOP"))):
 
     SESSION_COOKIE_SECURE = True
 
-    STATIC_ROOT = "/var/www/jovian34.com/static/"
+    STATIC_ROOT = "/var/www/jovian34/static/"
