@@ -123,7 +123,7 @@ USE_TZ = True
 
 
 STATIC_URL = "/static/"
-STATICFILES_DIR = [BASE_DIR / "static"]
+STATICFILES_DIR = [BASE_DIR / "django_project/static"]
 STATIC_ROOT = os.path.join(BASE_DIR, "django_project/staticfiles/")
 
 if not bool(int(os.environ.get("DEVELOP"))):
