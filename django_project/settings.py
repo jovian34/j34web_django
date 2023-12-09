@@ -123,8 +123,6 @@ USE_TZ = True
 
 
 STATIC_URL = "/static/"
-STATICFILES_DIR = [BASE_DIR / "django_project/static"]
-STATIC_ROOT = os.path.join(BASE_DIR, "django_project/staticfiles/")
 
 if not bool(int(os.environ.get("DEVELOP"))):
     # added due to security warnings
@@ -139,3 +137,5 @@ if not bool(int(os.environ.get("DEVELOP"))):
     SECURE_HSTS_PRELOAD = True
 
     SESSION_COOKIE_SECURE = True
+
+    STATIC_ROOT = os.path.join(BASE_DIR, "django_project/static/")
