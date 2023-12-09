@@ -4,7 +4,6 @@ from django.views.decorators.clickjacking import xframe_options_exempt
 
 from .models import Content, Category
 
-
 @xframe_options_exempt
 def index(request):
     categories = Category.objects.all()

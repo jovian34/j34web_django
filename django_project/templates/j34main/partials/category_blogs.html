@@ -12,7 +12,9 @@
         <figcaption>{{ article.image_caption }}</figcaption>
     </figure>
 
-    {{ article.teaser }}
+    {% autoescape off %}
+    {{ article.teaser | markitup }}
+    {% endautoescape %}
     <p>... for more <a href="{% url 'blog' article.pk %}">click here</a></p>
 </div>
 
