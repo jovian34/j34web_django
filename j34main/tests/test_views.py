@@ -121,3 +121,10 @@ def test_category_blog_partial_does_not_render_other_category(
     assert response.status_code == 200
     assert "A quick intro" not in str(response.content)
     assert "A brief intro" in str(response.content)
+
+
+@pytest.mark.django_db
+def test_single_blog_page_renders_html(client, blog_objs):
+    response = client.get(f"/j34/blog/{blog_objs[0].id}/")
+    assert response.status_code == 200
+    assert "<p>The main content" in str(response.content)

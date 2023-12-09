@@ -1,5 +1,6 @@
 
 
+{% load markitup %}
 
 {% for article in row_one %}
 <div class="column-6">
@@ -11,9 +12,7 @@
         <figcaption>{{ article.image_caption }}</figcaption>
     </figure>
 
-    {% autoescape off %}
     {{ article.teaser }}
-    {% endautoescape %}
     <p>... for more <a href="{% url 'blog' article.pk %}">click here</a></p>
 </div>
 
@@ -32,8 +31,9 @@
     </figure>
 
     {% autoescape off %}
-    {{ article.teaser }}
+    {{ article.teaser | markitup }}
     {% endautoescape %}
+
     <p>... for more <a href="{% url 'blog' article.pk %}">click here</a></p>
 </div>
 
