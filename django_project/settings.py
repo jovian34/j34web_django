@@ -140,4 +140,4 @@ if not bool(int(os.environ.get("DEVELOP"))):
 
     SESSION_COOKIE_SECURE = True
 
-    STATIC_ROOT = os.path.join(BASE_DIR, "django_project/static/")
+    STATIC_ROOT = os.path.join(BASE_DIR, "/var/www/static/")
