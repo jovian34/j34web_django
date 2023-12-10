@@ -140,4 +140,7 @@ if not bool(int(os.environ.get("DEVELOP"))):
 
     SESSION_COOKIE_SECURE = True
 
-    STATIC_ROOT = os.path.join(BASE_DIR, "/var/www/static/")
+    STATIC_ROOT = "/home/carl/j34web_django/django_project/static/"
+
+project_version = "0.3.0"
+os.environ.setdefault("PROJECT_VERSION", project_version)
