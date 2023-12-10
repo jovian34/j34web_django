@@ -142,5 +142,5 @@ if not bool(int(os.environ.get("DEVELOP"))):
 
     STATIC_ROOT = os.path.join(BASE_DIR, 'django_project_static/')
 
-project_version = "0.3.1"
+project_version = "0.4.0"
 os.environ.setdefault("PROJECT_VERSION", project_version)
