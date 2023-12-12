@@ -1,10 +1,10 @@
 from django import template
-from datetime import datetime
+from django.utils import timezone
 
 register = template.Library()
 
 
 @register.simple_tag(name="this_year")
 def this_year():
-    current = datetime.now()
+    current = timezone.now()
     return current.year
