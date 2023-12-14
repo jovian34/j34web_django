@@ -16,10 +16,12 @@
             <img src="{{ article.featured_image }}">
             <figcaption>{{ article.image_caption }}</figcaption>
         </figure>
-
-        {% autoescape off %}
-        {{ article.content | markitup }}
-        {% endautoescape %}
+        
+        <div id="blog_content">
+            {% autoescape off %}
+            {{ article.content | markitup }}
+            {% endautoescape %}
+        </div>
     </div>
 
    <div class="column-3">

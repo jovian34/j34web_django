@@ -46,6 +46,12 @@ h3 {
   padding: 5px;
 }
 
+#blog_content img {
+  float: left;
+  width: 100%;
+  padding: 5px;
+}
+
 /*--------HEADER---------------*/
 #headerWrapper {
   background-color: #D7D8A8;
