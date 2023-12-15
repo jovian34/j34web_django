@@ -142,5 +142,5 @@ if not bool(int(os.environ.get("DEVELOP"))):
 
     STATIC_ROOT = os.path.join(BASE_DIR, 'django_project/static/')
 
-project_version = "0.4.7" # added additional content in template ATP 2023-12-15
+project_version = "0.4.8" # adjusted css to center pics on desktop ATP 2023-12-15
 os.environ.setdefault("PROJECT_VERSION", project_version)

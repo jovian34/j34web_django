@@ -22,22 +22,23 @@
             {{ article.content | markitup }}
             {% endautoescape %}
         </div>
-    </div>
+        <br clear=both>
 
-    <div class="column-6">
-        <div id="blog_content">
-            {% for section in add_content %}
+        {% for section in add_content %}
+            <div id="blog_content">                
                 {% autoescape off %}
                     {% if section.is_raw_html %}
                         {{ section.additional_content }}
                     {% else %}
                         {{ section.additional_content | markitup }}
                     {% endif %}
-                {% endautoescape %}
-            {% endfor %}
-        </div>
-
+                {% endautoescape %}                
+            </div>
+            <br clear=both>
+        {% endfor %}
     </div>
+
+
 
    <div class="column-3">
    <figure class="col3full">
