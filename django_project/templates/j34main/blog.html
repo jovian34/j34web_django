@@ -24,6 +24,21 @@
         </div>
     </div>
 
+    <div class="column-6">
+        <div id="blog_content">
+            {% for section in add_content %}
+                {% autoescape off %}
+                    {% if section.is_raw_html %}
+                        {{ section.additional_content }}
+                    {% else %}
+                        {{ section.additional_content | markitup }}
+                    {% endif %}
+                {% endautoescape %}
+            {% endfor %}
+        </div>
+
+    </div>
+
    <div class="column-3">
    <figure class="col3full">
     <img src="https://live.staticflickr.com/65535/49931263861_877b53bb07_w.jpg">

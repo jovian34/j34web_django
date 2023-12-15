@@ -15,7 +15,7 @@ def index(request):
 
 def blog(request, blog_id):
     article = get_object_or_404(Content, pk=blog_id)
-    add_content = AdditionalContent.objects.filter(main_content=blog_id)
+    add_content = AdditionalContent.objects.filter(main_content=blog_id).order_by("order")
     context = {
         "article": article, 
         "add_content": add_content,
