@@ -37,3 +37,6 @@ class AdditionalContent(models.Model):
     order = models.IntegerField(null=False)
     is_raw_html = models.BooleanField(db_default=False)
     additional_content = models.TextField(null=False)
+
+    def __str__(self) -> str:
+        return f"{self.main_content.title} part: {self.order}"
