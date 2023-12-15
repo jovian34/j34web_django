@@ -2,7 +2,7 @@ from unicodedata import category
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.clickjacking import xframe_options_exempt
 
-from .models import Content, Category
+from .models import Content, Category, AdditionalContent
 
 @xframe_options_exempt
 def index(request):
@@ -15,8 +15,10 @@ def index(request):
 
 def blog(request, blog_id):
     article = get_object_or_404(Content, pk=blog_id)
+    add_content = AdditionalContent.objects.filter(main_content=blog_id)
     context = {
-        "article": article,
+        "article": article, 
+        "add_content": add_content,
     }
     return render(request, "j34main/blog.html", context)
 

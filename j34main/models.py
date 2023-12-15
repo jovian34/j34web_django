@@ -30,3 +30,10 @@ class Content(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+class AdditionalContent(models.Model):
+    main_content = models.ForeignKey(Content, null=False, on_delete=models.CASCADE)
+    order = models.IntegerField(null=False)
+    is_raw_html = models.BooleanField(db_default=False)
+    additional_content = models.TextField(null=False)
