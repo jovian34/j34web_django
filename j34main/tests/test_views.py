@@ -1,9 +1,10 @@
 import pytest
 
+from collections import namedtuple
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-from ..models import Content, Category
+from ..models import Content, Category, AdditionalContent
 
 
 @pytest.mark.django_db
@@ -57,7 +58,9 @@ def category_objs(client):
     cat1 = Category.objects.create(cat_name="Cat1")
     cat2 = Category.objects.create(cat_name="Cat2")
     cat3 = Category.objects.create(cat_name="Cat3")
-    return cat1, cat2, cat3
+    CatObj = namedtuple("CatObj", "cat1 cat2 cat3")
+    categories = CatObj(cat1=cat1, cat2=cat2, cat3=cat3)
+    return categories
 
 
 @pytest.mark.django_db
@@ -78,24 +81,25 @@ def blog_objs(client, category_objs):
         teaser="A brief intro",
         content="The main content",
     )
-    blog1.categories.set([category_objs[0], category_objs[1]])
+    blog1.categories.set([category_objs.cat1, category_objs.cat2])
     blog2 = Content.objects.create(
         title="Blog Number Two",
         sub_title="My second blog",
         pub_date=timezone.now(),
         teaser="A quick intro",
-        content="The primary content",
+        content="The primary content for blog two",
     )
-    blog2.categories.set([category_objs[0], category_objs[2]])
-    return blog1, blog2
+    blog2.categories.set([category_objs.cat1, category_objs.cat3])
+    BlogObj = namedtuple("BlogObj", "blog1 blog2")
+    blogs = BlogObj(blog1=blog1, blog2=blog2)
+    return blogs
 
 
 @pytest.mark.django_db
 def test_single_blog_page_renders(client, blog_objs):
-    response = client.get(f"/j34/blog/{blog_objs[0].id}/")
+    response = client.get(f"/j34/blog/{blog_objs.blog1.id}/")
     assert response.status_code == 200
     assert "The main content" in str(response.content)
-
 
 @pytest.mark.django_db
 def test_blog_list_renders(client, blog_objs):
@@ -108,7 +112,7 @@ def test_blog_list_renders(client, blog_objs):
 
 @pytest.mark.django_db
 def test_category_blog_partial_renders(client, blog_objs, category_objs):
-    response = client.get(f"/j34/category_blogs/{category_objs[0].id}/")
+    response = client.get(f"/j34/category_blogs/{category_objs.cat1.id}/")
     assert response.status_code == 200
     assert "A quick intro" in str(response.content)
 
@@ -117,7 +121,7 @@ def test_category_blog_partial_renders(client, blog_objs, category_objs):
 def test_category_blog_partial_does_not_render_other_category(
     client, blog_objs, category_objs
 ):
-    response = client.get(f"/j34/category_blogs/{category_objs[1].id}/")
+    response = client.get(f"/j34/category_blogs/{category_objs.cat2.id}/")
     assert response.status_code == 200
     assert "A quick intro" not in str(response.content)
     assert "A brief intro" in str(response.content)
@@ -125,6 +129,31 @@ def test_category_blog_partial_does_not_render_other_category(
 
 @pytest.mark.django_db
 def test_single_blog_page_renders_html(client, blog_objs):
-    response = client.get(f"/j34/blog/{blog_objs[0].id}/")
+    response = client.get(f"/j34/blog/{blog_objs.blog1.id}/")
     assert response.status_code == 200
     assert "<p>The main content" in str(response.content)
+
+@pytest.fixture
+def blog2_additional_content(client, blog_objs):
+    add2_5 = AdditionalContent.objects.create(
+        main_content = blog_objs.blog2,
+        order=5,
+        additional_content = "Number five additional content"
+    )
+    add2_9 = AdditionalContent.objects.create(
+        main_content = blog_objs.blog2,
+        order=9,
+        additional_content = "Number nine additional content"
+    )
+    AddContent = namedtuple("AddContent", "add2_5 add2_9")
+    add_content = AddContent(add2_5=add2_5, add2_9=add2_9)
+    return add_content
+
+@pytest.mark.django_db
+def test_single_blog_page_renders_primary_and_additional_content(client, blog_objs, blog2_additional_content):
+    response = client.get(f"/j34/blog/{blog_objs.blog2.id}/")
+    assert response.status_code == 200
+    assert "The primary content for blog two" in str(response.content)
+    assert "Number five additional content" in str(response.content)
+    assert "Number nine additional content" in str(response.content)
+
