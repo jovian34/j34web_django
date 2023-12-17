@@ -165,5 +165,47 @@ def test_single_blog_page_renders_primary_and_additional_content(
 
 
 @pytest.mark.django_db
-def test_create_new_blog(client):
-    pass
+def test_create_new_blog(client, category_objs, logged_user_balius):
+    response = client.post(
+        reverse("create_blog"),
+        {
+            "title": "A Neil Diamond Christmas",
+            "sub_title": "Hell YES he went there",
+            "featured_image": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/fb/20/77/fb2077de-14c8-c6e7-367f-33429d183c53/00602547673343.rgb.jpg/316x316bb.webp",
+            "image_caption": "Neil Diamond's Christmas Album",
+            "teaser": "Curated by Diamond and remastered by his longtime engineer, Bernie Becker.",
+            "content": "A Neil Diamond Christmas is a 2022 collection of Christmas songs recorded by Neil Diamond.",
+            "categories": (f"{category_objs.cat2.pk}", f"{category_objs.cat3.pk}")
+        },
+    )
+    assert response.status_code == 302
+    test_obj = Content.objects.last()
+    assert test_obj.title == "A Neil Diamond Christmas"
+    assert "2022 collection" in test_obj.content
+    cats = [ cat.pk for cat in test_obj.categories.all() ]
+    assert len(cats) == 2
+    assert category_objs.cat2.pk in cats
+
+
+@pytest.mark.django_db
+def test_create_new_blog_fails_not_logged_in(client, category_objs):
+    response = client.post(
+        reverse("create_blog"),
+        {
+            "title": "A Neil Diamond Christmas",
+            "sub_title": "Hell YES he went there",
+            "featured_image": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/fb/20/77/fb2077de-14c8-c6e7-367f-33429d183c53/00602547673343.rgb.jpg/316x316bb.webp",
+            "image_caption": "Neil Diamond's Christmas Album",
+            "teaser": "Curated by Diamond and remastered by his longtime engineer, Bernie Becker.",
+            "content": "A Neil Diamond Christmas is a 2022 collection of Christmas songs recorded by Neil Diamond.",
+            "categories": (f"{category_objs.cat2.pk}", f"{category_objs.cat3.pk}")
+        },
+    )
+    assert response.status_code == 302
+    test_obj = Content.objects.last()
+    try:
+        last_title = test_obj.title
+    except AttributeError:
+        assert True
+    else:
+        assert False
