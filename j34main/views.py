@@ -26,11 +26,13 @@ def blogs(request):
 
 def category_blogs(request, cat_pk):
     articles = Content.objects.filter(categories=cat_pk).order_by("-pub_date")[:4]
+    category = Category.objects.get(pk=cat_pk)
     row_one = articles[0:2]
     row_two = articles[2:4]
     context = {
         "row_one": row_one,
         "row_two": row_two,
+        "category": category,
     }
     return render(request, "j34main/partials/category_blogs.html", context)
 

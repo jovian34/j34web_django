@@ -18,7 +18,9 @@
 
     <div class="column-12"></div>
 
-    <div id="cat_blogs"></div>
+    <div id="cat_blogs">
+        <div hx-get="{% url 'category_blogs' '3' %}" hx-trigger="load" hx-target="this"></div>
+    </div>
 
     
 
