@@ -44,9 +44,7 @@
               rel="me" href="https://social.linux.pizza/@jovian34">Mastodon</a></p>
               <hr>
               {% if user.is_authenticated %}
-              <p>Welcome, {{ user.first_name}}.
-                You can <a href="{% url 'index' %}">add blog entries</a> 
-                or</p>
+              <p>Welcome, {{ user.first_name}}.</p>
                 <form method="post" action="{% url 'logout' %}">
                   {% csrf_token %}
                   <button type="submit">Sign Out</button>

@@ -25,6 +25,11 @@
     <br clear="both">
     <div class="column-12">
         <h2>See a complete list of all <a href="{% url 'blogs' %}">jovian34 blogs</a></h2>
+        {% if user.is_authenticated %}
+
+        <h2><a href="{% url 'create_blog' %}">Add a new blog entry</a></h2>
+
+        {% endif %}
     </div>
 
 {% endblock %}

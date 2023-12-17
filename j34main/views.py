@@ -1,8 +1,10 @@
 from unicodedata import category
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views.decorators.clickjacking import xframe_options_exempt
+from django.contrib.auth.decorators import login_required
 
 from .models import Content, Category, AdditionalContent
+from .forms import ContentForm
 
 @xframe_options_exempt
 def index(request):
@@ -11,16 +13,6 @@ def index(request):
         "categories": categories,
     }
     return render(request, "j34main/index.html", context)
-
-
-def blog(request, blog_id):
-    article = get_object_or_404(Content, pk=blog_id)
-    add_content = AdditionalContent.objects.filter(main_content=blog_id).order_by("order")
-    context = {
-        "article": article, 
-        "add_content": add_content,
-    }
-    return render(request, "j34main/blog.html", context)
 
 
 def blogs(request):
@@ -40,3 +32,37 @@ def category_blogs(request, cat_pk):
         "row_two": row_two,
     }
     return render(request, "j34main/partials/category_blogs.html", context)
+
+
+def blog(request, blog_id):
+    article = get_object_or_404(Content, pk=blog_id)
+    add_content = AdditionalContent.objects.filter(main_content=blog_id).order_by("order")
+    context = {
+        "article": article, 
+        "add_content": add_content,
+    }
+    return render(request, "j34main/blog.html", context)
+
+
+@login_required
+def create_blog(request):
+    if request.method == "POST":
+        form = ContentForm(request.POST)
+        if form.is_valid():
+            add_blog = Content(
+                title=form.cleaned_data["title"],
+                sub_title=form.cleaned_data["sub_title"],
+                featured_image=form.cleaned_data["featured_image"],
+                image_caption=form.cleaned_data["image_caption"],
+                teaser=form.cleaned_data["teaser"],
+                content=form.cleaned_data["content"],
+                categories=form.cleaned_data["categories"]
+            )
+            add_blog.save()
+        return redirect("/j34")
+    else:
+        form = ContentForm()
+        context = {
+            "form": form,
+        }
+        return render(request, "j34main/create_blog.html", context=context)
