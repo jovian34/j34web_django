@@ -206,6 +206,11 @@ def test_create_new_blog_fails_not_logged_in(client, category_objs):
     try:
         last_title = test_obj.title
     except AttributeError:
-        assert True
+        assert True # no object should exist as there
     else:
         assert False
+
+def test_create_blog_while_not_logged_in_forwards_to_login_form(client):
+    response = client.get('/j34/create_blog/', follow=True)
+    assert response.status_code == 200
+    assert "Log In" in str(response.content)
