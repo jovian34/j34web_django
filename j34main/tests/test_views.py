@@ -3,6 +3,7 @@ import pytest
 from collections import namedtuple
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.urls import reverse
 
 from ..models import Content, Category, AdditionalContent
 
@@ -101,6 +102,7 @@ def test_single_blog_page_renders(client, blog_objs):
     assert response.status_code == 200
     assert "The main content" in str(response.content)
 
+
 @pytest.mark.django_db
 def test_blog_list_renders(client, blog_objs):
     response = client.get("/j34/blogs/")
@@ -133,27 +135,35 @@ def test_single_blog_page_renders_html(client, blog_objs):
     assert response.status_code == 200
     assert "<p>The main content" in str(response.content)
 
+
 @pytest.fixture
 def blog2_additional_content(client, blog_objs):
     add2_5 = AdditionalContent.objects.create(
-        main_content = blog_objs.blog2,
+        main_content=blog_objs.blog2,
         order=5,
-        additional_content = "Number five additional content"
+        additional_content="Number five additional content",
     )
     add2_9 = AdditionalContent.objects.create(
-        main_content = blog_objs.blog2,
+        main_content=blog_objs.blog2,
         order=9,
-        additional_content = "Number nine additional content"
+        additional_content="Number nine additional content",
     )
     AddContent = namedtuple("AddContent", "add2_5 add2_9")
     add_content = AddContent(add2_5=add2_5, add2_9=add2_9)
     return add_content
 
+
 @pytest.mark.django_db
-def test_single_blog_page_renders_primary_and_additional_content(client, blog_objs, blog2_additional_content):
+def test_single_blog_page_renders_primary_and_additional_content(
+    client, blog_objs, blog2_additional_content
+):
     response = client.get(f"/j34/blog/{blog_objs.blog2.id}/")
     assert response.status_code == 200
     assert "The primary content for blog two" in str(response.content)
     assert "Number five additional content" in str(response.content)
     assert "Number nine additional content" in str(response.content)
 
+
+@pytest.mark.django_db
+def test_create_new_blog(client):
+    pass

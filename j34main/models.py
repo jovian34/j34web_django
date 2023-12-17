@@ -31,7 +31,7 @@ class Content(models.Model):
 
     def __str__(self):
         return self.title
-    
+
 
 class AdditionalContent(models.Model):
     main_content = models.ForeignKey(Content, null=False, on_delete=models.CASCADE)

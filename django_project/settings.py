@@ -140,7 +140,7 @@ if not bool(int(os.environ.get("DEVELOP"))):
 
     SESSION_COOKIE_SECURE = True
 
-    STATIC_ROOT = os.path.join(BASE_DIR, 'django_project/static/')
+    STATIC_ROOT = os.path.join(BASE_DIR, "django_project/static/")
 
-project_version = "0.4.9" # changed str rep for addition_content model ATP 2023-12-15
+project_version = "0.4.9"  # changed str rep for addition_content model ATP 2023-12-15
 os.environ.setdefault("PROJECT_VERSION", project_version)
