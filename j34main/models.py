@@ -1,6 +1,7 @@
 from tkinter import CASCADE
 from unicodedata import category
 from django.db import models
+from django.db.models.functions import Now
 
 
 class Category(models.Model):
@@ -18,12 +19,12 @@ class Content(models.Model):
         null=False,
         max_length=100,
     )
-    sub_title = models.CharField(default=None, blank=True, max_length=100)
-    author = models.CharField(default="Carl James", max_length=100)
-    location = models.CharField(default="BLOOMINGTON, IN", max_length=100)
-    pub_date = models.DateTimeField("date published")
+    sub_title = models.CharField(db_default="", blank=True, max_length=100)
+    author = models.CharField(db_default="Carl James", max_length=100)
+    location = models.CharField(db_default="BLOOMINGTON, IN", max_length=100)
+    pub_date = models.DateTimeField("date published", db_default=Now())
     featured_image = models.URLField(blank=True, null=True, max_length=200)
-    image_caption = models.CharField(default="", blank=True, max_length=100)
+    image_caption = models.CharField(db_default="", blank=True, max_length=100)
     teaser = models.TextField(null=False)
     content = models.TextField(null=False)
     categories = models.ManyToManyField(Category)

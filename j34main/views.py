@@ -56,8 +56,10 @@ def create_blog(request):
                 image_caption=form.cleaned_data["image_caption"],
                 teaser=form.cleaned_data["teaser"],
                 content=form.cleaned_data["content"],
-                categories=form.cleaned_data["categories"]
             )
+
+            add_blog.save()
+            add_blog.categories.set(form.cleaned_data["categories"])
             add_blog.save()
         return redirect("/j34")
     else:
