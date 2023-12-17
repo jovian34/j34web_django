@@ -215,12 +215,39 @@ footer a {
   padding: 2em;
 }
 
-/*OTHER STUFF*/
 /* ---------- OTHER STUFF ------*/
 .clearfix:after {
   content: "";
   display: table;
   clear: both;
+}
+
+.add-item a {
+  color: #8A002E;
+  text-decoration: none;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  font-size: large;
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+  width: 33%;
+  background-color: #669900;
+  border: none;
+  color: black;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+input:focus, textarea:focus {
+  background-color: #cccccc;
 }
 
 @media only screen and (min-width: 900px) {
