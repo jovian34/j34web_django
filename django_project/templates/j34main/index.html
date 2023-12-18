@@ -10,8 +10,11 @@
 
     {% for category in categories %}
         
-            <div class="nav-buttons column-3" hx-get="{% url 'category_blogs' category.pk %}" hx-target="#cat_blogs">
-                <h2>{{ category.cat_name }}</h2>
+            <div class="nav-buttons column-3" 
+                hx-get="{% url 'category_blogs' category.pk %}" 
+                hx-target="#cat_blogs" 
+                hx-trigger="mouseenter">
+                    <h2>{{ category.cat_name }}</h2>
             </div>
         
     {% endfor %}
