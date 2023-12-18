@@ -142,5 +142,5 @@ if not bool(int(os.environ.get("DEVELOP"))):
 
     STATIC_ROOT = os.path.join(BASE_DIR, "django_project/static/")
 
-project_version = "0.5.0"  # ALL cat loads immediately ATP 2023-12-17
+project_version = "0.5.1"  # reverting mouseover change ATP 2023-12-17
 os.environ.setdefault("PROJECT_VERSION", project_version)
