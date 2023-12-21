@@ -6,9 +6,30 @@
         
         <form action="" method="post">
         {% csrf_token %}
-        {{ form }}
+        {{ form_main }}
         <input type="submit" value="Submit">
         </form>
+
+        <hr>
+
+        {% for content in add_cons %}
+
+            {% if content.is_raw_html %}
+                <form action="" method="post">
+                {% csrf_token %}
+                {{ form_add_html }}
+                <input type="submit" value="Submit">
+                </form>
+            {% else %}
+                <form action="" method="post">
+                {% csrf_token %}
+                {{ form_add_markdown }}
+                <input type="submit" value="Submit">
+                </form>
+            {% endif %}
+
+        {% endfor %}
+
     
     </div>
 

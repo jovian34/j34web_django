@@ -14,8 +14,8 @@ class ContentForm(forms.Form):
         assume_scheme="https", # remove argument for Django 6.0
         )
     image_caption = forms.CharField(label="Caption for Featured Image")
-    teaser = forms.CharField(label="Teaser")
-    content = forms.CharField(label="Content of Blog")
+    teaser = forms.CharField(label="Teaser", widget=forms.Textarea())
+    content = forms.CharField(label="Content of Blog", widget=forms.Textarea())
     categories = forms.ModelMultipleChoiceField(
         queryset=Category.objects.all(), 
         widget=forms.CheckboxSelectMultiple,
@@ -34,10 +34,10 @@ class HtmlSanitizedCharField(forms.CharField):
 class AdditionalContentHtmlForm(forms.Form):
     order = forms.IntegerField(label="Order")
     is_raw_html = forms.BooleanField(label="Is this raw HTML?")
-    additional_content = HtmlSanitizedCharField(label="HTML Content")
+    additional_content = HtmlSanitizedCharField(label="HTML Content", widget=forms.Textarea())
 
 
 class AdditionalContentMarkdownForm(forms.Form):
     order = forms.IntegerField(label="Order")
     is_raw_html = forms.BooleanField(label="Is this raw HTML?")
-    additional_content = forms.CharField(label="Markdown Content")
+    additional_content = forms.CharField(label="Markdown Content", widget=forms.Textarea())

@@ -5,7 +5,7 @@ from django.views.decorators.clickjacking import xframe_options_exempt
 from django.contrib.auth.decorators import login_required
 
 from .models import Content, Category, AdditionalContent
-from .forms import ContentForm
+from .forms import ContentForm, AdditionalContentHtmlForm, AdditionalContentMarkdownForm
 
 
 @xframe_options_exempt
@@ -93,7 +93,8 @@ def edit_blog(request, blog_id):
             orig_blog.save()
         return redirect(reverse("blog", args=[blog_id]))
     else:
-        form = ContentForm(
+        add_cons = AdditionalContent.objects.filter(main_content=blog_id)
+        form_main = ContentForm(
             initial={
                 "title": orig_blog.title,
                 "sub_title": orig_blog.sub_title,
@@ -104,7 +105,22 @@ def edit_blog(request, blog_id):
                 "categories": orig_blog.categories.all(),
             }
         )
+        form_add_html = AdditionalContentHtmlForm(
+            initial={
+                "order": add_cons.order,
+                "additional_content": add_cons.additional_content,
+            }
+        )
+        form_add_markdown = AdditionalContentMarkdownForm(
+            initial={
+                "order": add_cons.order,
+                "additional_content": add_cons.additional_content,
+            }
+        )
         context = {
-            "form": form,
+            "form_main": form_main,
+            "form_add_html": form_add_html,
+            "form_add_markdown": form_add_markdown,
+            "add_cons": add_cons,
         }
         return render(request, "j34main/edit_blog.html", context=context)
