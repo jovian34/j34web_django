@@ -2,7 +2,7 @@ from django.test import SimpleTestCase
 from ..forms import HtmlSanitizedCharField
 
 
-class HtmlSanitizedTextFieldTests(SimpleTestCase):
+class HtmlSanitizedCharFieldTests(SimpleTestCase):
     field = HtmlSanitizedCharField()
 
     def test_empty(self):
