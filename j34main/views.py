@@ -73,3 +73,23 @@ def create_blog(request):
             "form": form,
         }
         return render(request, "j34main/create_blog.html", context=context)
+
+
+@login_required
+def edit_blog(request, blog_id):
+    if request.method == "PUT":
+        pass
+    else:
+        orig_blog = Content.objects.get(pk=blog_id)
+        form = ContentForm(initial={
+                "title": orig_blog.title,
+                "sub_title": orig_blog.sub_title,
+                "featured_image": orig_blog.featured_image,
+                "image_caption": orig_blog.image_caption,
+                "teaser": orig_blog.teaser,
+                "content": orig_blog.content
+        })
+        context = {
+            "form": form,
+        }
+        return render(request, "j34main/edit_blog.html", context=context)

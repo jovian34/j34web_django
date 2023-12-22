@@ -45,6 +45,9 @@
     <img src="https://live.staticflickr.com/65535/49931263861_877b53bb07_w.jpg">
        <figcaption>Carl James is CompTIA A+ ce Certified</figcaption>
    </figure>
+    {% if user.is_authenticated %}
+        <h2><a href="{% url 'edit_blog' article.pk %}">Edit {{ article.title }}</a></h2>
+    {% endif %}
    </div>
 
     <br clear="both">

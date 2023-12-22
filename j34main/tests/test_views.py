@@ -1,11 +1,10 @@
 import pytest
 
-from collections import namedtuple
 from django.contrib.auth.models import User
-from django.utils import timezone
 from django.urls import reverse
 
 from ..models import Content, Category, AdditionalContent
+from .view_fixtures import category_objs, blog_objs, blog2_additional_content
 
 
 @pytest.mark.django_db
@@ -35,7 +34,7 @@ def logged_user_balius(client):
 
 @pytest.mark.django_db
 def test_logged_in_user_welcomed(client, logged_user_balius):
-    response = client.get("/j34/")
+    response = client.get(reverse("index"))
     assert response.status_code == 200
     assert "jovian34 LLC Blogs" in str(response.content)
     assert "Balius" in str(response.content)
@@ -54,46 +53,13 @@ def test_logging_out_redirects_to_index(client, logged_user_balius):
     assert "Staff login" in str(response.content)
 
 
-@pytest.fixture
-def category_objs(client):
-    cat1 = Category.objects.create(cat_name="Cat1")
-    cat2 = Category.objects.create(cat_name="Cat2")
-    cat3 = Category.objects.create(cat_name="Cat3")
-    CatObj = namedtuple("CatObj", "cat1 cat2 cat3")
-    categories = CatObj(cat1=cat1, cat2=cat2, cat3=cat3)
-    return categories
-
-
 @pytest.mark.django_db
 def test_index_shows_all_categories(client, category_objs):
-    response = client.get("/j34/")
+    response = client.get(reverse("index"))
     assert response.status_code == 200
     assert "Cat1" in str(response.content)
     assert "Cat2" in str(response.content)
     assert "Cat3" in str(response.content)
-
-
-@pytest.fixture
-def blog_objs(client, category_objs):
-    blog1 = Content.objects.create(
-        title="Blog Number One",
-        sub_title="My first blog",
-        pub_date=timezone.now(),
-        teaser="A brief intro",
-        content="The main content",
-    )
-    blog1.categories.set([category_objs.cat1, category_objs.cat2])
-    blog2 = Content.objects.create(
-        title="Blog Number Two",
-        sub_title="My second blog",
-        pub_date=timezone.now(),
-        teaser="A quick intro",
-        content="The primary content for blog two",
-    )
-    blog2.categories.set([category_objs.cat1, category_objs.cat3])
-    BlogObj = namedtuple("BlogObj", "blog1 blog2")
-    blogs = BlogObj(blog1=blog1, blog2=blog2)
-    return blogs
 
 
 @pytest.mark.django_db
@@ -134,23 +100,6 @@ def test_single_blog_page_renders_html(client, blog_objs):
     response = client.get(f"/j34/blog/{blog_objs.blog1.id}/")
     assert response.status_code == 200
     assert "<p>The main content" in str(response.content)
-
-
-@pytest.fixture
-def blog2_additional_content(client, blog_objs):
-    add2_5 = AdditionalContent.objects.create(
-        main_content=blog_objs.blog2,
-        order=5,
-        additional_content="Number five additional content",
-    )
-    add2_9 = AdditionalContent.objects.create(
-        main_content=blog_objs.blog2,
-        order=9,
-        additional_content="Number nine additional content",
-    )
-    AddContent = namedtuple("AddContent", "add2_5 add2_9")
-    add_content = AddContent(add2_5=add2_5, add2_9=add2_9)
-    return add_content
 
 
 @pytest.mark.django_db
@@ -214,3 +163,32 @@ def test_create_blog_while_not_logged_in_forwards_to_login_form(client):
     response = client.get('/j34/create_blog/', follow=True)
     assert response.status_code == 200
     assert "Log In" in str(response.content)
+
+@pytest.mark.django_db
+def test_edit_blog_renders_filled_out_form(client, blog_objs, logged_user_balius):
+    response = client.get(reverse("edit_blog", args=[blog_objs.blog2.pk]))
+    assert response.status_code == 200
+    assert "Blog Number Two" in str(response.content)
+
+@pytest.mark.django_db
+def test_blog_pages_includes_correct_edit_link_when_logged_on(client, blog_objs, logged_user_balius):
+    response = client.get(reverse("blog", args=[blog_objs.blog1.pk]))
+    assert response.status_code == 200
+    assert reverse("edit_blog", args=[blog_objs.blog1.pk]) in str(response.content)
+
+@pytest.mark.django_db
+def test_blog_page_omits_edit_link_when_not_logged_in(client, blog_objs):
+    response = client.get(reverse("blog", args=[blog_objs.blog1.pk]))
+    assert response.status_code == 200
+    assert reverse("edit_blog", args=[blog_objs.blog1.pk]) not in str(response.content)
+
+@pytest.mark.django_db
+def test_edit_blog_redirects_when_not_logged_in(client, blog_objs):
+    response = client.get(reverse("edit_blog", args=[blog_objs.blog2.pk]))
+    assert response.status_code == 302
+
+@pytest.mark.django_db
+def test_edit_blog_redirects_to_index_when_not_logged_in(client, blog_objs):
+    response = client.get(reverse("edit_blog", args=[blog_objs.blog2.pk]), follow=True)
+    assert response.status_code == 200
+    assert "Staff login" in str(response.content)
