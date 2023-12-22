@@ -5,20 +5,33 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('j34main', '0010_delete_service'),
+        ("j34main", "0010_delete_service"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='AdditionalContent',
+            name="AdditionalContent",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('order', models.IntegerField()),
-                ('is_raw_html', models.BooleanField(db_default=models.Value(False))),
-                ('additional_content', models.TextField()),
-                ('main_content', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='j34main.content')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("order", models.IntegerField()),
+                ("is_raw_html", models.BooleanField(db_default=models.Value(False))),
+                ("additional_content", models.TextField()),
+                (
+                    "main_content",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="j34main.content",
+                    ),
+                ),
             ],
         ),
     ]

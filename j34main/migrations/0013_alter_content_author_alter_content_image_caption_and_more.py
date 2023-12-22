@@ -4,30 +4,37 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('j34main', '0012_alter_content_pub_date'),
+        ("j34main", "0012_alter_content_pub_date"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='content',
-            name='author',
-            field=models.CharField(db_default=models.Value('Carl James'), max_length=100),
+            model_name="content",
+            name="author",
+            field=models.CharField(
+                db_default=models.Value("Carl James"), max_length=100
+            ),
         ),
         migrations.AlterField(
-            model_name='content',
-            name='image_caption',
-            field=models.CharField(blank=True, db_default=models.Value(''), max_length=100),
+            model_name="content",
+            name="image_caption",
+            field=models.CharField(
+                blank=True, db_default=models.Value(""), max_length=100
+            ),
         ),
         migrations.AlterField(
-            model_name='content',
-            name='location',
-            field=models.CharField(db_default=models.Value('BLOOMINGTON, IN'), max_length=100),
+            model_name="content",
+            name="location",
+            field=models.CharField(
+                db_default=models.Value("BLOOMINGTON, IN"), max_length=100
+            ),
         ),
         migrations.AlterField(
-            model_name='content',
-            name='sub_title',
-            field=models.CharField(blank=True, db_default=models.Value(''), max_length=100),
+            model_name="content",
+            name="sub_title",
+            field=models.CharField(
+                blank=True, db_default=models.Value(""), max_length=100
+            ),
         ),
     ]

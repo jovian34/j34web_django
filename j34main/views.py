@@ -81,14 +81,16 @@ def edit_blog(request, blog_id):
         pass
     else:
         orig_blog = Content.objects.get(pk=blog_id)
-        form = ContentForm(initial={
+        form = ContentForm(
+            initial={
                 "title": orig_blog.title,
                 "sub_title": orig_blog.sub_title,
                 "featured_image": orig_blog.featured_image,
                 "image_caption": orig_blog.image_caption,
                 "teaser": orig_blog.teaser,
-                "content": orig_blog.content
-        })
+                "content": orig_blog.content,
+            }
+        )
         context = {
             "form": form,
         }

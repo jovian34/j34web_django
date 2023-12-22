@@ -11,7 +11,7 @@ def urlfields_assume_https(db_field, **kwargs):
     ModelForm.Meta.formfield_callback function to assume HTTPS for scheme-less
     domains in URLFields.
     This may not be needed starting with Django 6.0
-    per https://adamj.eu/tech/2023/12/07/django-fix-urlfield-assume-scheme-warnings/ 
+    per https://adamj.eu/tech/2023/12/07/django-fix-urlfield-assume-scheme-warnings/
     """
     if isinstance(db_field, models.URLField):
         kwargs["assume_scheme"] = "https"
@@ -39,7 +39,7 @@ class HtmlSanitizedCharField(forms.CharField):
         if value not in self.empty_values:
             value = nh3.clean(value)
         return value
-    
+
 
 class AdditionalContentHtmlForm(forms.Form):
     order = forms.IntegerField(label="Order")

@@ -54,5 +54,3 @@ def blog2_additional_content(client, blog_objs):
     AddContent = namedtuple("AddContent", "add2_5 add2_9")
     add_content = AddContent(add2_5=add2_5, add2_9=add2_9)
     return add_content
-
-

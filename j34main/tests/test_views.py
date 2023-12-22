@@ -124,14 +124,14 @@ def test_create_new_blog(client, category_objs, logged_user_balius):
             "image_caption": "Neil Diamond's Christmas Album",
             "teaser": "Curated by Diamond and remastered by his longtime engineer, Bernie Becker.",
             "content": "A Neil Diamond Christmas is a 2022 collection of Christmas songs recorded by Neil Diamond.",
-            "categories": (f"{category_objs.cat2.pk}", f"{category_objs.cat3.pk}")
+            "categories": (f"{category_objs.cat2.pk}", f"{category_objs.cat3.pk}"),
         },
     )
     assert response.status_code == 302
     test_obj = Content.objects.last()
     assert test_obj.title == "A Neil Diamond Christmas"
     assert "2022 collection" in test_obj.content
-    cats = [ cat.pk for cat in test_obj.categories.all() ]
+    cats = [cat.pk for cat in test_obj.categories.all()]
     assert len(cats) == 2
     assert category_objs.cat2.pk in cats
 
@@ -147,7 +147,7 @@ def test_create_new_blog_fails_not_logged_in(client, category_objs):
             "image_caption": "Neil Diamond's Christmas Album",
             "teaser": "Curated by Diamond and remastered by his longtime engineer, Bernie Becker.",
             "content": "A Neil Diamond Christmas is a 2022 collection of Christmas songs recorded by Neil Diamond.",
-            "categories": (f"{category_objs.cat2.pk}", f"{category_objs.cat3.pk}")
+            "categories": (f"{category_objs.cat2.pk}", f"{category_objs.cat3.pk}"),
         },
     )
     assert response.status_code == 302
@@ -155,14 +155,16 @@ def test_create_new_blog_fails_not_logged_in(client, category_objs):
     try:
         last_title = test_obj.title
     except AttributeError:
-        assert True # no object should exist as there
+        assert True  # no object should exist as there
     else:
         assert False
 
+
 def test_create_blog_while_not_logged_in_forwards_to_login_form(client):
-    response = client.get('/j34/create_blog/', follow=True)
+    response = client.get("/j34/create_blog/", follow=True)
     assert response.status_code == 200
     assert "Log In" in str(response.content)
+
 
 @pytest.mark.django_db
 def test_edit_blog_renders_filled_out_form(client, blog_objs, logged_user_balius):
@@ -170,11 +172,15 @@ def test_edit_blog_renders_filled_out_form(client, blog_objs, logged_user_balius
     assert response.status_code == 200
     assert "Blog Number Two" in str(response.content)
 
+
 @pytest.mark.django_db
-def test_blog_pages_includes_correct_edit_link_when_logged_on(client, blog_objs, logged_user_balius):
+def test_blog_pages_includes_correct_edit_link_when_logged_on(
+    client, blog_objs, logged_user_balius
+):
     response = client.get(reverse("blog", args=[blog_objs.blog1.pk]))
     assert response.status_code == 200
     assert reverse("edit_blog", args=[blog_objs.blog1.pk]) in str(response.content)
+
 
 @pytest.mark.django_db
 def test_blog_page_omits_edit_link_when_not_logged_in(client, blog_objs):
@@ -182,10 +188,12 @@ def test_blog_page_omits_edit_link_when_not_logged_in(client, blog_objs):
     assert response.status_code == 200
     assert reverse("edit_blog", args=[blog_objs.blog1.pk]) not in str(response.content)
 
+
 @pytest.mark.django_db
 def test_edit_blog_redirects_when_not_logged_in(client, blog_objs):
     response = client.get(reverse("edit_blog", args=[blog_objs.blog2.pk]))
     assert response.status_code == 302
+
 
 @pytest.mark.django_db
 def test_edit_blog_redirects_to_index_when_not_logged_in(client, blog_objs):
