@@ -2,6 +2,7 @@ import pytest
 
 from collections import namedtuple
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 from ..models import Content, Category, AdditionalContent
 
@@ -54,3 +55,15 @@ def blog2_additional_content(client, blog_objs):
     AddContent = namedtuple("AddContent", "add2_5 add2_9")
     add_content = AddContent(add2_5=add2_5, add2_9=add2_9)
     return add_content
+
+
+@pytest.fixture
+def logged_user_balius(client):
+    user = User.objects.create_user(
+        username="balius",
+        email="balius@jovian34.com",
+        password="Hdbwrwbrj7239293skjhkasH72!",
+        first_name="Balius",
+    )
+    client.login(username="balius", password="Hdbwrwbrj7239293skjhkasH72!")
+    return user
