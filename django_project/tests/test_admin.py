@@ -1,7 +1,7 @@
 import pytest
 from django.contrib.auth.models import User
 from django.test import LiveServerTestCase
-from helium import start_chrome
+from helium import start_chrome, kill_browser
 import os
 
 
@@ -27,3 +27,4 @@ class TestChrome(LiveServerTestCase):
         admin_path = f"{self.live_server_url}/{os.getenv('ADMIN_WORD')}/"
         driver.get(admin_path)
         assert "Log in | jovian34 website" in driver.title
+        kill_browser()

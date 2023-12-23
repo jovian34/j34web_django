@@ -4,6 +4,7 @@ from collections import namedtuple
 from django.utils import timezone
 from django.contrib.auth.models import User
 
+
 from ..models import Content, Category, AdditionalContent
 
 
