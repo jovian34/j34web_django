@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 
 from ..models import Content, Category, AdditionalContent
-from .view_fixtures import category_objs, blog_objs, blog2_additional_content
+from .fixtures import category_objs, blog_objs, blog2_additional_content
 
 
 @pytest.mark.django_db
@@ -155,7 +155,7 @@ def test_create_new_blog_fails_not_logged_in(client, category_objs):
     try:
         last_title = test_obj.title
     except AttributeError:
-        assert True  # no object should exist as there
+        assert True  # no object should exist as no logged-in user fixture was passed
     else:
         assert False
 
