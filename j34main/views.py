@@ -1,5 +1,6 @@
 from unicodedata import category
 from django.shortcuts import get_object_or_404, render, redirect
+from django.urls import reverse
 from django.views.decorators.clickjacking import xframe_options_exempt
 from django.contrib.auth.decorators import login_required
 
@@ -66,7 +67,7 @@ def create_blog(request):
             add_blog.save()
             add_blog.categories.set(form.cleaned_data["categories"])
             add_blog.save()
-        return redirect("/j34")
+        return redirect(reverse("index"))
     else:
         form = ContentForm()
         context = {
@@ -77,10 +78,20 @@ def create_blog(request):
 
 @login_required
 def edit_blog(request, blog_id):
-    if request.method == "PUT":
-        pass
+    orig_blog = Content.objects.get(pk=blog_id)
+    if request.method == "POST":
+        form = ContentForm(request.POST)
+        if form.is_valid():
+            orig_blog.title=form.cleaned_data["title"]
+            orig_blog.sub_title=form.cleaned_data["sub_title"]
+            orig_blog.featured_image=form.cleaned_data["featured_image"]
+            orig_blog.image_caption=form.cleaned_data["image_caption"]
+            orig_blog.teaser=form.cleaned_data["teaser"]
+            orig_blog.content=form.cleaned_data["content"]
+            orig_blog.categories.set(form.cleaned_data["categories"])
+            orig_blog.save()
+        return redirect(reverse("blog", args=[blog_id]))
     else:
-        orig_blog = Content.objects.get(pk=blog_id)
         form = ContentForm(
             initial={
                 "title": orig_blog.title,
@@ -89,6 +100,7 @@ def edit_blog(request, blog_id):
                 "image_caption": orig_blog.image_caption,
                 "teaser": orig_blog.teaser,
                 "content": orig_blog.content,
+                "categories": orig_blog.categories.all(),
             }
         )
         context = {

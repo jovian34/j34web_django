@@ -187,3 +187,23 @@ def test_edit_blog_redirects_to_index_when_not_logged_in(client, blog_objs):
     response = client.get(reverse("edit_blog", args=[blog_objs.blog2.pk]), follow=True)
     assert response.status_code == 200
     assert "Staff login" in str(response.content)
+
+@pytest.mark.django_db
+def test_edit_blog_submits_edited_content(client, category_objs, blog_objs, logged_user_balius):
+    response = client.post(
+        reverse("edit_blog", args=[blog_objs.blog2.pk]),
+        {
+            "title": "Blog Number Two",
+            "sub_title": "My second blog",
+            "teaser": "A quick intro",
+            "featured_image": "https://www.billboard.com/wp-content/uploads/2022/09/taylor-swift-NSAI-billboard-2022-1548.jpg",
+            "image_caption": "edited caption for image",
+            "content": "Edited content",
+            "categories": [category_objs.cat1.pk, category_objs.cat3.pk],
+        },
+        follow=True,
+    )
+    assert response.status_code == 200
+    assert "Title:" not in str(response.content)
+    assert "Blog Number Two" in str(response.content)
+    assert "Edited content" in str(response.content)

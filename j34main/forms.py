@@ -3,7 +3,7 @@ import nh3
 from django.forms import ModelForm
 from django import forms
 from django.db import models
-from .models import Content
+from .models import Content, Category
 
 
 def urlfields_assume_https(db_field, **kwargs):
@@ -18,6 +18,20 @@ def urlfields_assume_https(db_field, **kwargs):
     return db_field.formfield(**kwargs)
 
 
+class ContentForm(forms.Form):
+    title = forms.CharField(label="Title")
+    sub_title = forms.CharField(label="Subtitle")
+    featured_image = forms.URLField(label="Featured Image")
+    image_caption = forms.CharField(label="Caption for Featured Image")
+    teaser = forms.CharField(label="Teaser")
+    content = forms.CharField(label="Content of Blog")
+    categories = forms.ModelMultipleChoiceField(
+        queryset=Category.objects.all(), 
+        widget=forms.CheckboxSelectMultiple,
+        label="Categories"
+        )
+
+'''
 class ContentForm(ModelForm):
     class Meta:
         model = Content
@@ -31,6 +45,7 @@ class ContentForm(ModelForm):
             "categories",
         ]
         formfield_callback = urlfields_assume_https
+        '''
 
 
 class HtmlSanitizedCharField(forms.CharField):
