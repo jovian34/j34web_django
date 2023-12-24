@@ -73,6 +73,10 @@ h3 {
   border-color: #222;
 }
 
+.nav-active {
+  background-color: #FFCC66;
+}
+
 /* unvisited link */
 a:link {
   color: #3c652b;

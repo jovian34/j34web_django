@@ -73,6 +73,10 @@ h3 {
 	border-color: $black-subtle;
 }
 
+.nav-active {
+	background-color: $yellow;
+}
+
 /* unvisited link */
 a:link {
     color: $link;

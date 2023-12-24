@@ -1,0 +1,17 @@
+{% for category in categories %} 
+
+    {% if category.pk == active %}
+        <div class="nav-buttons column-3 nav-active"
+            hx-get="{% url 'category_blogs' category.pk %}" 
+            hx-target="#cat_blogs">
+                <h2>{{ category.cat_name }}</h2>
+        </div> 
+    {% else %}
+        <div class="nav-buttons column-3"
+            hx-get="{% url 'category_blogs' category.pk %}" 
+            hx-target="#cat_blogs">
+                <h2>{{ category.cat_name }}</h2>
+        </div> 
+    {% endif %}
+
+{% endfor %} 

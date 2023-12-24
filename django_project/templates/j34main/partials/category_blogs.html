@@ -4,9 +4,8 @@
 
 <br clear="both">
 
-<div class="column-12">
-    <h1>Current Category: {{ category.cat_name }}</h1>
-    <hr>
+<div class="column-12" hx-trigger="load" hx-get="{% url "cat_nav" category.pk %}" hx-target="#cat-nav">
+
 </div>
 
 {% for article in row_one %}

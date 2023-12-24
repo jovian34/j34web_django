@@ -35,6 +35,13 @@ def category_blogs(request, cat_pk):
     }
     return render(request, "j34main/partials/category_blogs.html", context)
 
+def cat_nav(request, cat_pk):
+    categories = Category.objects.all()
+    context = {
+        "categories": categories,
+        "active": cat_pk,
+    }
+    return render(request, "j34main/partials/cat_nav.html", context)
 
 def blog(request, blog_id):
     article = get_object_or_404(Content, pk=blog_id)
