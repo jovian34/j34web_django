@@ -121,6 +121,7 @@ def edit_add_con_html(request, add_con_id):
         if form.is_valid():
             add_con.order=form.cleaned_data["order"]
             add_con.additional_content=form.cleaned_data["additional_content"]
+            add_con.save()
         return redirect(reverse("add_content_partial", args=[add_con_id]))
     form = AdditionalContentHtmlForm(
         initial={
@@ -128,7 +129,7 @@ def edit_add_con_html(request, add_con_id):
             "additional_content": add_con.additional_content,
         }
     )
-    context = { "form": form }
+    context = { "form": form, "add_con_id": add_con_id, }
     return render(request, "j34main/partials/edit_add_con_html.html", context=context)
     
 
@@ -141,6 +142,7 @@ def edit_add_con_markdown(request, add_con_id):
         if form.is_valid():
             add_con.order=form.cleaned_data["order"]
             add_con.additional_content=form.cleaned_data["additional_content"]
+            add_con.save()
         return redirect(reverse("add_content_partial", args=[add_con_id]))
     form = AdditionalContentMarkdownForm(
         initial={
@@ -148,7 +150,10 @@ def edit_add_con_markdown(request, add_con_id):
             "additional_content": add_con.additional_content,
         }
     )
-    context = { "form": form }
+    context = {
+        "form": form, 
+        "add_con_id": add_con_id,
+    }
     return render(request, "j34main/partials/edit_add_con_markdown.html", context=context)
 
 

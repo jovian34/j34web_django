@@ -1,8 +1,15 @@
 
-<form action="" method="post">
-{% csrf_token %}
-{{ form }}
-<input type="submit" value="Submit">
+<form action="" method="post" id="add-form-{{ add_con_id }}">
+    {% csrf_token %}
+    {{ form }}
+    <button hx-post={% url "edit_add_con_markdown" add_con_id %} hx-target="#add-{{ add_con_id }}">
+        Submit
+    </button>
 </form>
 
+<div class="column-6">
+</div>
+
+<div class="column-6">
 <button>Switch to raw html</button>
+</div>
