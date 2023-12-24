@@ -209,3 +209,18 @@ def test_edit_blog_submits_edited_content(client, category_objs, blog_objs, logg
     assert "Blog Number Two" in str(response.content)
     assert "Edited content" in str(response.content)
     assert category_objs.cat2.cat_name in str(response.content)
+
+
+@pytest.mark.django_db
+def test_edit_add_con_submits_edited_content(client, blog2_additional_content, logged_user_balius):
+    response = client.post(
+        reverse("edit_add_con", args=[blog2_additional_content.add2_9.pk]),
+        {
+            "order": 8,
+            "additional_content": "Number eight additional content",
+            "is_raw_html": False,
+        },
+        follow=True,
+    )
+    assert response.status_code == 200
+    assert "eight" in str(response.content)

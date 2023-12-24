@@ -119,6 +119,7 @@ def edit_add_con(request, add_con_id):
         if form.is_valid():
             add_con.order=form.cleaned_data["order"]
             add_con.additional_content=form.cleaned_data["additional_content"]
+            add_con.is_raw_html=form.cleaned_data["is_raw_html"]
             add_con.save()
         return redirect(reverse("add_content_partial", args=[add_con_id]))
     form = AdditionalContentForm(

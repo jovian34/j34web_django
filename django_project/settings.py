@@ -142,5 +142,5 @@ if not bool(int(os.environ.get("DEVELOP"))):
 
     STATIC_ROOT = os.path.join(BASE_DIR, "django_project/static/")
 
-project_version = "0.6.1"  # editing blogs in app renders back ATP 2023-12-24
+project_version = "0.6.2"  # editing add cont one view now ATP 2023-12-24
 os.environ.setdefault("PROJECT_VERSION", project_version)
