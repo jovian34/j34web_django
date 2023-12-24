@@ -24,6 +24,6 @@ class AdditionalContentForm(forms.Form):
     order = forms.IntegerField(label="Order")
     is_raw_html = forms.BooleanField(
         label="Is this raw HTML?",
-        required=False,
+        required=False, # Since False is treated as not a value
     )
     additional_content = forms.CharField(label="Additional Content Section", widget=forms.Textarea())
