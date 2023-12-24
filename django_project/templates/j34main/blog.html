@@ -53,6 +53,12 @@
     <br clear="both">
 
     <div class="column-12">
+        <h2>Categories
+            {% for category in categories %} 
+                || {{ category.cat_name }}
+            {% endfor %}
+        </h2>
+        <hr>
         <h2>See a complete list of all <a href="{% url 'blogs' %}">jovian34 blogs</a></h2>
         <p>As always, I'd love to hear you're thoughts and questions, so feel free to
             shoot a <a href="https://social.linux.pizza/@jovian34">Noot to @jovian34</a> 

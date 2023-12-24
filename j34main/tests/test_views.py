@@ -199,7 +199,7 @@ def test_edit_blog_submits_edited_content(client, category_objs, blog_objs, logg
             "featured_image": "https://www.billboard.com/wp-content/uploads/2022/09/taylor-swift-NSAI-billboard-2022-1548.jpg",
             "image_caption": "edited caption for image",
             "content": "Edited content",
-            "categories": [category_objs.cat1.pk, category_objs.cat3.pk],
+            "categories": [category_objs.cat1.pk, category_objs.cat2.pk],
         },
         follow=True,
     )
@@ -207,3 +207,4 @@ def test_edit_blog_submits_edited_content(client, category_objs, blog_objs, logg
     assert "Title:" not in str(response.content)
     assert "Blog Number Two" in str(response.content)
     assert "Edited content" in str(response.content)
+    assert category_objs.cat2.cat_name in str(response.content)

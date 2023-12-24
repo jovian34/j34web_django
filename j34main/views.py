@@ -46,6 +46,7 @@ def blog(request, blog_id):
     context = {
         "article": article,
         "add_content": add_content,
+        "categories": article.categories.all(),
     }
     return render(request, "j34main/blog.html", context)
 
