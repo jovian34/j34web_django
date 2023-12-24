@@ -83,10 +83,11 @@ def test_category_blog_partial_does_not_render_other_category(
 
 
 @pytest.mark.django_db
-def test_single_blog_page_renders_html(client, blog_objs):
+def test_single_blog_page_renders_html(client, blog_objs, category_objs):
     response = client.get(reverse("blog", args=[blog_objs.blog1.id]))
     assert response.status_code == 200
     assert "<p>The main content" in str(response.content)
+    assert category_objs.cat1.cat_name in str(response.content)
 
 
 @pytest.mark.django_db
