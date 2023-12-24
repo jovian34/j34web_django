@@ -80,6 +80,7 @@ def create_blog(request):
 @login_required
 def edit_blog(request, blog_id):
     orig_blog = Content.objects.get(pk=blog_id)
+    add_cons = AdditionalContent.objects.filter(main_content=blog_id)
     if request.method == "POST":
         form = ContentForm(request.POST)
         if form.is_valid():
@@ -93,8 +94,7 @@ def edit_blog(request, blog_id):
             orig_blog.save()
         return redirect(reverse("blog", args=[blog_id]))
     else:
-        add_cons = AdditionalContent.objects.filter(main_content=blog_id)
-        form_main = ContentForm(
+        form = ContentForm(
             initial={
                 "title": orig_blog.title,
                 "sub_title": orig_blog.sub_title,
@@ -105,22 +105,53 @@ def edit_blog(request, blog_id):
                 "categories": orig_blog.categories.all(),
             }
         )
-        form_add_html = AdditionalContentHtmlForm(
-            initial={
-                "order": add_cons.order,
-                "additional_content": add_cons.additional_content,
-            }
-        )
-        form_add_markdown = AdditionalContentMarkdownForm(
-            initial={
-                "order": add_cons.order,
-                "additional_content": add_cons.additional_content,
-            }
-        )
         context = {
-            "form_main": form_main,
-            "form_add_html": form_add_html,
-            "form_add_markdown": form_add_markdown,
+            "title": orig_blog.title,
+            "form": form,
             "add_cons": add_cons,
         }
         return render(request, "j34main/edit_blog.html", context=context)
+
+
+@login_required
+def edit_add_con_html(request, add_con_id):
+    add_con = AdditionalContent.objects.get(pk=add_con_id)
+    if request.method == "POST":
+        form = AdditionalContentHtmlForm(request.POST)
+        if form.is_valid():
+            add_con.order=form.cleaned_data["order"]
+            add_con.additional_content=form.cleaned_data["additional_content"]
+        return redirect(reverse("add_content_partial", args=[add_con_id]))
+    form = AdditionalContentHtmlForm(
+        initial={
+            "additional_content": add_con.additional_content,
+        }
+    )
+    context = { "form": form }
+    return render(request, "j34main/partials/edit_add_con_html.html", context=context)
+    
+
+
+@login_required
+def edit_add_con_markdown(request, add_con_id):
+    add_con = AdditionalContent.objects.get(pk=add_con_id)
+    if request.method == "POST":
+        form = AdditionalContentHtmlForm(request.POST)
+        if form.is_valid():
+            add_con.order=form.cleaned_data["order"]
+            add_con.additional_content=form.cleaned_data["additional_content"]
+        return redirect(reverse("add_content_partial", args=[add_con_id]))
+    form = AdditionalContentMarkdownForm(
+        initial={
+            "additional_content": add_con.additional_content,
+        }
+    )
+    context = { "form": form }
+    return render(request, "j34main/partials/edit_add_con_markdown.html", context=context)
+
+
+def add_content_partial(request, add_con_id):
+    add_con = AdditionalContent.objects.get(pk=add_con_id)
+    context = { "add_con": add_con }
+    return render(request, "j34main/partials/add_con.html", context=context)
+

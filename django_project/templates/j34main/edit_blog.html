@@ -1,12 +1,18 @@
 {% extends 'base.html' %}
 
+{% load markitup %}
+
+{% block title %}Edit Blog: {{ title }}{% endblock %}
+
 {% block content %}
 
-    <div id="content">
-        
+    <div class="column-3"></div>
+
+    <div class="column-6">
+   
         <form action="" method="post">
         {% csrf_token %}
-        {{ form_main }}
+        {{ form }}
         <input type="submit" value="Submit">
         </form>
 
@@ -14,23 +20,35 @@
 
         {% for content in add_cons %}
 
+        <div class="columns-12" id="edit-add-con-{{ content.pk }}">
+            <hr>
+
+
             {% if content.is_raw_html %}
-                <form action="" method="post">
-                {% csrf_token %}
-                {{ form_add_html }}
-                <input type="submit" value="Submit">
-                </form>
+                {% autoescape off %}
+                {{ content.additional_content }}
+                {% endautoescape %}
+                <div class="columns-4"></div>
+            
+                <div class="columns-4" id="edit-add-html">
+                    <button hx-get="{% url 'edit_add_con_html' content.pk %}" hx-target="#edit-add-con-{{ content.pk }}">Edit</button>
+                </div>
             {% else %}
-                <form action="" method="post">
-                {% csrf_token %}
-                {{ form_add_markdown }}
-                <input type="submit" value="Submit">
-                </form>
+                {% autoescape off %}
+                {{ content.additional_content | markitup }}
+                {% endautoescape %}
+                <div class="columns-4"></div>
+            
+                <div class="columns-4" id="edit-add-markdown">
+                    <button hx-get="{% url 'edit_add_con_markdown' content.pk %}" hx-target="#edit-add-con-{{ content.pk }}">Edit</button>
+                </div>
             {% endif %}
+
 
         {% endfor %}
 
     
     </div>
+    <br clear=both>
 
 {% endblock %}

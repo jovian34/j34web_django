@@ -33,11 +33,9 @@ class HtmlSanitizedCharField(forms.CharField):
 
 class AdditionalContentHtmlForm(forms.Form):
     order = forms.IntegerField(label="Order")
-    is_raw_html = forms.BooleanField(label="Is this raw HTML?")
     additional_content = HtmlSanitizedCharField(label="HTML Content", widget=forms.Textarea())
 
 
 class AdditionalContentMarkdownForm(forms.Form):
     order = forms.IntegerField(label="Order")
-    is_raw_html = forms.BooleanField(label="Is this raw HTML?")
     additional_content = forms.CharField(label="Markdown Content", widget=forms.Textarea())

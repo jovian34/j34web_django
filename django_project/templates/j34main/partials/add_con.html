@@ -1,0 +1,10 @@
+{% load markit up %}
+
+
+    {% autoescape off %}
+        {% if add_con.is_raw_html %}
+            {{ add_con.additional_content }}
+        {% else %}
+            {{ add_con.additional_content | markitup }}
+        {% endif %}
+    {% endautoescape %}      
