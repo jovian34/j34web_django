@@ -227,6 +227,9 @@ footer a {color: $footer-text-color;}
     text-decoration: none;
 }
 
+
+ /*---------------FORM---------------*/
+
 input, textarea {
     width: 100%;
     padding: 12px 20px;
@@ -250,3 +253,10 @@ input[type=button], input[type=submit], input[type=reset] {
 input:focus, textarea:focus {
     background-color: $grey;
   }
+
+
+
+ input[type=checkbox] {
+	width: 20%;
+	border: 20px;
+ }
