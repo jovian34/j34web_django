@@ -1,6 +1,3 @@
-import nh3
-
-from django.forms import ModelForm
 from django import forms
 from django.db import models
 from .models import Content, Category
@@ -23,19 +20,7 @@ class ContentForm(forms.Form):
         )
     
 
-class HtmlSanitizedCharField(forms.CharField):
-    def to_python(self, value):
-        value = super().to_python(value)
-        if value not in self.empty_values:
-            value = nh3.clean(value)
-        return value
-
-
-class AdditionalContentHtmlForm(forms.Form):
+class AdditionalContentForm(forms.Form):
     order = forms.IntegerField(label="Order")
-    additional_content = HtmlSanitizedCharField(label="HTML Content", widget=forms.Textarea())
-
-
-class AdditionalContentMarkdownForm(forms.Form):
-    order = forms.IntegerField(label="Order")
-    additional_content = forms.CharField(label="Markdown Content", widget=forms.Textarea())
+    is_raw_html = forms.BooleanField(label="Is this raw HTML?")
+    additional_content = forms.CharField(label="HTML Content", widget=forms.Textarea())

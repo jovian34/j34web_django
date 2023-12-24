@@ -17,28 +17,28 @@
         </form>
 
         <hr>
+        <br>
+        <h1>Edit Additional Content Sections:</h1>
+        <p>Click the "Edit" button below the section(s) you want to change.</p>
+        <p>You must submit partial changes invidually <em>before</em> clicking "submit" above.
+            or your changes will be lost.</p>
+        <br>
 
         {% for content in add_cons %}
 
         <div class="columns-12" id="add-{{ content.pk }}">
             <hr>
-
-
+            {% autoescape off %}
             {% if content.is_raw_html %}
-                {% autoescape off %}
                 {{ content.additional_content }}
-                {% endautoescape %}
-                <button hx-get="{% url 'edit_add_con_html' content.pk %}" hx-target="#add-{{ content.pk }}">Edit</button>
+                <br>
             {% else %}
-                {% autoescape off %}
-                {{ content.additional_content | markitup }}
-                {% endautoescape %}
-                <button hx-get="{% url 'edit_add_con_markdown' content.pk %}" hx-target="#add-{{ content.pk }}">Edit</button>
+                {{ content.additional_content | markitup }}             
             {% endif %}
-
+            {% endautoescape %}
+            <button hx-get="{% url 'edit_add_con' content.pk %}" hx-target="#add-{{ content.pk }}">Edit</button>
         </div>
-
-
+        <br>
         {% endfor %}
 
     

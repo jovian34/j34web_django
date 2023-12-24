@@ -7,4 +7,8 @@
         {% else %}
             {{ add_con.additional_content | markitup }}
         {% endif %}
-    {% endautoescape %}      
+    {% endautoescape %} 
+
+    {% if user.is_authenticated %} 
+     <button hx-get="{% url 'edit_add_con' add_con.pk %}" hx-target="#add-{{ add_con.pk }}">Edit</button>    
+    {% endif %} 

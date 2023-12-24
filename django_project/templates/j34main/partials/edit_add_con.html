@@ -1,0 +1,8 @@
+
+<form action="" method="post" id="add-form-{{ add_con_id }}">
+    {% csrf_token %}
+    {{ form }}
+    <button hx-post={% url "edit_add_con" add_con_id %} hx-target="#add-{{ add_con_id }}">
+        Submit
+    </button>
+</form>
