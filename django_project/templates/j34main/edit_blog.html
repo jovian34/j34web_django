@@ -20,7 +20,7 @@
 
         {% for content in add_cons %}
 
-        <div class="columns-12" id="edit-add-con-{{ content.pk }}">
+        <div class="columns-12" id="add-{{ content.pk }}">
             <hr>
 
 
@@ -28,21 +28,15 @@
                 {% autoescape off %}
                 {{ content.additional_content }}
                 {% endautoescape %}
-                <div class="columns-4"></div>
-            
-                <div class="columns-4" id="edit-add-html">
-                    <button hx-get="{% url 'edit_add_con_html' content.pk %}" hx-target="#edit-add-con-{{ content.pk }}">Edit</button>
-                </div>
+                <button hx-get="{% url 'edit_add_con_html' content.pk %}" hx-target="#add-{{ content.pk }}">Edit</button>
             {% else %}
                 {% autoescape off %}
                 {{ content.additional_content | markitup }}
                 {% endautoescape %}
-                <div class="columns-4"></div>
-            
-                <div class="columns-4" id="edit-add-markdown">
-                    <button hx-get="{% url 'edit_add_con_markdown' content.pk %}" hx-target="#edit-add-con-{{ content.pk }}">Edit</button>
-                </div>
+                <button hx-get="{% url 'edit_add_con_markdown' content.pk %}" hx-target="#add-{{ content.pk }}">Edit</button>
             {% endif %}
+
+        </div>
 
 
         {% endfor %}

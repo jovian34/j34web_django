@@ -124,6 +124,7 @@ def edit_add_con_html(request, add_con_id):
         return redirect(reverse("add_content_partial", args=[add_con_id]))
     form = AdditionalContentHtmlForm(
         initial={
+            "order": add_con.order,
             "additional_content": add_con.additional_content,
         }
     )
@@ -143,6 +144,7 @@ def edit_add_con_markdown(request, add_con_id):
         return redirect(reverse("add_content_partial", args=[add_con_id]))
     form = AdditionalContentMarkdownForm(
         initial={
+            "order": add_con.order,
             "additional_content": add_con.additional_content,
         }
     )
