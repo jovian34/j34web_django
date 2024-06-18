@@ -143,5 +143,5 @@ if not bool(int(os.environ.get("DEVELOP"))):
 
     STATIC_ROOT = os.path.join(BASE_DIR, "django_project/static/")
 
-project_version = "0.6.5"  # switch psql db to same do server as app ATP 2023-12-24
+project_version = "0.6.6"  # BASE pointing to HTMX 2.0 CDN reqs upgraded ATP 2024-06-18
 os.environ.setdefault("PROJECT_VERSION", project_version)
