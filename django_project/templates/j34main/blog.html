@@ -24,6 +24,7 @@
         </div>
         <br clear=both>
 
+        {% if add_cont_exists %}
         {% for section in add_content %}
             <div id="blog_content">                
                 {% autoescape off %}
@@ -36,6 +37,7 @@
             </div>
             <br clear=both>
         {% endfor %}
+        {% endif %}
     </div>
 
 

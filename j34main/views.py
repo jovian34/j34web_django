@@ -4,8 +4,27 @@ from django.urls import reverse
 from django.views.decorators.clickjacking import xframe_options_exempt
 from django.contrib.auth.decorators import login_required
 
-from .models import Content, Category, AdditionalContent
+from .models import Content, Category, AdditionalContent, TrafficCounter
 from .forms import ContentForm, AdditionalContentForm
+
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
+
+def save_traffic_data(request, page):
+    if not request.user.is_authenticated:
+        traffic = TrafficCounter.objects.create(
+                page=page,
+                ip=get_client_ip(request),
+                user_agent=request.headers.get("user-agent"),
+            )
+        traffic.save()
 
 
 @xframe_options_exempt
@@ -14,12 +33,14 @@ def index(request):
     context = {
         "categories": categories,
     }
+    save_traffic_data(request=request, page="Blog Index")
     return render(request, "j34main/index.html", context)
 
 
 def blogs(request):
     articles = Content.objects.all().order_by("-pub_date")
     context = { "articles": articles, }
+    save_traffic_data(request=request, page="All Blogs")
     return render(request, "j34main/blogs.html", context)
 
 
@@ -51,8 +72,10 @@ def blog(request, blog_id):
     context = {
         "article": article,
         "add_content": add_content,
+        "add_cont_exists": bool(len(add_content)),
         "categories": article.categories.all(),
     }
+    save_traffic_data(request=request, page=f"{context["article"].title}")
     return render(request, "j34main/blog.html", context)
 
 

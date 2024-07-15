@@ -1,8 +1,10 @@
 from dotenv import load_dotenv
 from pathlib import Path
+from datetime import date
 import os
 
 load_dotenv()
+today = date.today()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -88,6 +90,30 @@ DATABASES = {
     }
 }
 
+if DEBUG:
+    log_level = "DEBUG"
+else:
+    log_level = "WARNING"
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "file": {
+            "level": log_level,
+            "class": "logging.FileHandler",
+            "filename": f"{BASE_DIR}/logs/{today}_logging.log",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file"],
+            "level": log_level,
+            "propagate": True,
+        },
+    },
+}
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -143,5 +169,5 @@ if not bool(int(os.environ.get("DEVELOP"))):
 
     STATIC_ROOT = os.path.join(BASE_DIR, "django_project/static/")
 
-project_version = "0.6.8"  # removed visit tracking ATP 2024-07-13
+project_version = "0.7.0"  # added logging and traffic counter ATP 2024-07-15
 os.environ.setdefault("PROJECT_VERSION", project_version)
