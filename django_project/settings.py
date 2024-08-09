@@ -169,5 +169,5 @@ if not bool(int(os.environ.get("DEVELOP"))):
 
     STATIC_ROOT = os.path.join(BASE_DIR, "django_project/static/")
 
-project_version = "0.7.0"  # added logging and traffic counter ATP 2024-07-15
+project_version = "0.7.1"  # update Python to 3.12.5 and Django to 5.1 ATP 2024-08-09
 os.environ.setdefault("PROJECT_VERSION", project_version)
