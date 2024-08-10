@@ -19,7 +19,7 @@ if not bool(int(os.environ.get("DEVELOP"))):
     ALLOWED_HOSTS = [
         "jovian34.com",
         "www.jovian34.com",
-        "104.236.0.165",
+        "137.184.100.121",
     ]
 
 else:
