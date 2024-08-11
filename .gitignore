@@ -7,3 +7,4 @@
 *.pyc
 /.pytest_cache
 /logs/
+/django_project/static/admin
