@@ -7,16 +7,24 @@
     <div class="column-3"></div>
 
 
-    <div class="column-6">
+    <div class="column-6" id="blogs">
         <h1>jovian34 LLC Blogs List</h1>
-        {% for article in articles %}
-            <ul>
+        {% for article in page_obj %}
+            <ul class="blog">
                 <li>
                 <h1><a href="{% url 'blog' article.pk %}">{{ article.title }}</a></h1>
                 <h2>{{ article.sub_title }}</h2>
                 <p>by {{ article.author }} | {{ article.location }} | {{ article.pub_date.date }}</p>
                 </li>
             </ul>
+
+        {% if page_obj.has_next and forloop.last %}
+        <span hx-get="{% url 'blogs' %}?page={{ page_obj.next_page_number }}"
+              hx-swap="beforeend" hx-target="#blogs" hx-select=".blog"
+              hx-trigger="revealed">
+            </span>
+        {% endif %}
+
         {% endfor %}
     </div>
 
