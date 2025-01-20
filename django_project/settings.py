@@ -172,5 +172,5 @@ if not bool(int(os.environ.get("DEVELOP"))):
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'django_project/static/')
 
-project_version = "0.7.2"  # update Python to 3.12.8 and Django to 5.1.4 ATP 2024-12-08
+project_version = "2025.01.20.a"  # update Django to 5.1.5 ATP
 os.environ.setdefault("PROJECT_VERSION", project_version)
