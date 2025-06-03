@@ -172,5 +172,5 @@ if not bool(int(os.environ.get("DEVELOP"))):
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'django_project/static/')
 
-project_version = "2025.06.03.a"  # update Django to 5.2.1 nd migrate pip to uv ATP
+project_version = "2025.06.03.b"  # add gunicorn to uv for faster deployment ATP
 os.environ.setdefault("PROJECT_VERSION", project_version)
