@@ -151,26 +151,40 @@ USE_TZ = True
 
 # Static and Security
 
-STATIC_URL = "/static/"
+STATIC_URL = "/static/"    
+
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+SECURE_HSTS_PRELOAD = True
+
+SESSION_COOKIE_SECURE = True
+
+STATIC_ROOT = Path('/var/www/html/static/')  
+
+CSRF_COOKIE_SECURE = True
+
+SECURE_HSTS_SECONDS = 9999
+STATIC_ROOT = os.path.join(BASE_DIR, 'django_project/static/')
 
 if not bool(int(os.environ.get("DEVELOP"))):
-    # added due to security warnings
-    CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = False
 
-    SECURE_HSTS_SECONDS = 9999
 
-    SECURE_SSL_REDIRECT = True
+# Version
 
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+def get_version():
+    file_path = BASE_DIR / "pyproject.toml"
+    try:
+        with file_path.open("r", encoding="utf-8") as file:
+            for line in file:
+                if line.strip().startswith("version ="):
+                    return line.split("=")[1].strip().strip('"')
+        return "Version not found"
+    except FileNotFoundError:
+        return "pyproject.toml not found"
+    except Exception as e:
+        return f"Error reading pyproject.toml: {e}"
 
-    SECURE_HSTS_PRELOAD = True
-
-    SESSION_COOKIE_SECURE = True
-    
-    STATIC_ROOT = Path('/var/www/html/static/')    
-
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'django_project/static/')
-
-project_version = "2025.06.04.a"  # update python and django ATP
+project_version = get_version()
 os.environ.setdefault("PROJECT_VERSION", project_version)
+print(f"Project version: {os.environ.get('PROJECT_VERSION')}")
