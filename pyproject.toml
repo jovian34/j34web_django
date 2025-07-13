@@ -1,9 +1,9 @@
 [project]
 name = "j34_web_django"
-version = "2025.07.04.0758"
+version = "2025.07.13.1528"
 requires-python = ">=3.13.4"
 dependencies = [
-    "asgiref==3.9.0",
+    "asgiref==3.9.1",
     "coverage==7.9.2",
     "django==5.2.4",
     "execnet==2.1.1",
