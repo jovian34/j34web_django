@@ -7,6 +7,6 @@
 .vscode/launch.json
 *.pyc
 /.pytest_cache
-/logs/
+/logs/*.log
 /django_project/static/admin
 .coverage
